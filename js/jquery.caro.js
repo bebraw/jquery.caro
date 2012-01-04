@@ -1,4 +1,4 @@
-/* MIT (c) Juho Vepsäläinen */
+/* MIT (c) Juho Vepsalainen */
 (function($){
   function caroize($elem, opts) {
     var $slideContainer = $elem.find('.slides');
