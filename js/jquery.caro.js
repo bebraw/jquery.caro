@@ -41,13 +41,23 @@
       
       animProps[dir] = (pos * -100) + '%';
       $wrapper.animate(animProps, delay);
+
+      updateNavi(pos);
+    }
+
+    function updateNavi(i) {
+      var $numberButtons = $navi.find('.number.button');
+      
+      $numberButtons.removeClass('selected');
+      $numberButtons.eq(i).addClass('selected');
     }
     
     $pages = $slides.each(function(i, k) {
       $('<div>').css('display', 'inline').text(i + 1).on('click', function() {
         moveTo(i);
-      }).appendTo($navi).addClass('button');
+      }).appendTo($navi).addClass('number button');
     });
+    updateNavi(0);
   }
   
   $.fn.caro = function (options) {
