@@ -31,29 +31,51 @@
     .footer { text-align:center; padding-top:30px; font-style: italic; }
  
     /* caro.js styles */
-    #demo1 {
+    .button {
+        cursor: pointer;
+    }
+    
+    #horizontalDemo {
         background-color: white;
     }
     
-    #demo1 .left.button {
+    #horizontalDemo .left.button {
         float: left;
     }
 
-    #demo1 .right.button {
+    #horizontalDemo .right.button {
         float: right;
     }
     
-    #demo1 .navi {
+    #horizontalDemo .navi {
       text-align: center;
     }
 
-    #demo1 .navi .button {
+    #horizontalDemo .navi .button {
       margin-left: 1em;
+    }
+
+    #verticalDemo {
+        background: white;
+    }
+
+    #verticalDemo .slides {
+        height: 100px; /* important!!! remember to set this */
+        margin: 1em;
+    }
+
+    #verticalDemo h3 {
+        margin: 0; /* won't work ok without margin reset!!! */
+    }
+    
+    #verticalDemo .button {
+        text-align: center;
     }
   </style>
   <script type="text/javascript">
     $(function() {
-        $('#demo1').caro();
+        $('#horizontalDemo').caro();
+        $('#verticalDemo').caro({delay: 500});
     });
   </script>
 </head>
@@ -80,7 +102,9 @@
     <p>Try scaling the browser window to see how it works. As you can see this thing here fits well in modern, fluid layouts.</p>
 
       <h2>Demo</h2>
-        <div id="demo1">
+
+        <h3>Horizontal Carousel</h3>
+        <div id="horizontalDemo">
             <div class="left button">left</div>
             <div class="right button">right</div>
             <div class="slides">
@@ -103,12 +127,36 @@
             </div>
             <div class="navi"></div>
         </div>
-      
+
+        <h3>Vertical Carousel</h3>
+          <div id="verticalDemo">
+            <div class="up button">up</div>
+            <div class="slides">
+                <div>
+                    <h3>Lion</h3>
+                    <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also known as the king of the jungle for some reason.</p>
+                </div>
+                <div>
+                    <h3>Monkey</h3>
+                    <p>Apparently these are cheeky. Not sure why.</p>
+                </div>
+                <div>
+                    <h3>Bear</h3>
+                    <p>Usually brown, black or white. Try to avoid these if possible.</p>
+                </div>
+                <div>
+                    <h3>Zebra</h3>
+                    <p>It has either white stripes on black or black on white. This is the subject of some really intense scientific debate.</p>
+                </div>
+            </div>
+            <div class="down button">down</div>
+        </div>
+        
       <h2>Dependencies</h2>
       <p>jQuery (1.something. let me know if it does not work for you)</p>
     
       <h2>Installation</h2>
-      <p>Copy jquery.caro.js to some appropriate place, link to it at your HTML, use $.caro($elem, opts); where opts is an object that can contain delay (given in ms).</p>
+      <p>Copy jquery.caro.js to some appropriate place, link to it at your HTML, use $.caro($elem, opts); where opts is an object that can contain delay (given in ms). Take a look at the source of this page to figure out what kind of markup to use.</p>
         
       <h2>License</h2>
       <p>MIT</p>

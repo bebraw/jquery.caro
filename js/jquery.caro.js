@@ -7,32 +7,40 @@
     var pos = 0;
     var amount = $slides.length;
     var $navi = $elem.find('.navi');
+    var dir = $elem.find('.up').length? 'top': 'left';
 
     $slideContainer.css('overflow', 'hidden');
     $wrapper.css({
       position: 'relative',
-      width: (amount * 100) + '%'
+      height: (amount * 100) + '%', // vertical case
+      width: (amount * 100) + '%' // horizontal case
     });
 
+    var displayMode = dir == 'top'? 'auto': 'inline-block';
     $slides.each(function(i, e) {
       $(e).css({
-        display: 'inline-block',
-        width: (100 / amount) + '%',
+        display: displayMode,
+        height: (100 / amount) + '%', // vertical case
+        width: (100 / amount) + '%', // horizontal case
         'vertical-align': 'top'
       });
     });
 
-    $elem.find('.left').on('click', function() {
+    $elem.find('.left,.up').on('click', function() {
       moveTo(pos - 1);
     });
     
-    $elem.find('.right').on('click', function() {
+    $elem.find('.right,.down').on('click', function() {
       moveTo(pos + 1);
     });
 
     function moveTo(i) {
+      var animProps = {};
+
       pos = Math.min(Math.max(i, 0), amount - 1);
-      $wrapper.animate({left: (pos * -100) + '%'}, delay);
+      
+      animProps[dir] = (pos * -100) + '%';
+      $wrapper.animate(animProps, delay);
     }
     
     $pages = $slides.each(function(i, k) {
