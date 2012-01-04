@@ -27,11 +27,11 @@
       });
     });
 
-    $elem.find('.left,.up').on('click', function() {
+    $elem.find('.left,.up').bind('click', function() {
       moveTo(pos - 1);
     });
     
-    $elem.find('.right,.down').on('click', function() {
+    $elem.find('.right,.down').bind('click', function() {
       moveTo(pos + 1);
     });
 
@@ -54,7 +54,7 @@
     }
     
     $pages = $slides.each(function(i, k) {
-      $('<div>').css('display', 'inline').text(i + 1).on('click', function() {
+      $('<div>').css('display', 'inline').text(i + 1).bind('click', function() {
         moveTo(i);
       }).appendTo($navi).addClass('number button');
     });
