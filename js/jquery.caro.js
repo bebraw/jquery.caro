@@ -21,36 +21,18 @@
         'vertical-align': 'top'
       });
     });
-    
-    function move() {
-      $wrapper.animate({left: (pos * 100) + '%'}, delay);
-    }
-    
+
     $elem.find('.left').on('click', function() {
-      pos++;
-      
-      if(pos > 0) {
-        pos = 0;
-      }
-      else {
-        move();
-      }
+      moveTo(pos - 1);
     });
     
     $elem.find('.right').on('click', function() {
-      pos--;
-      
-      if(pos <= -amount) {
-        pos = -amount + 1;
-      }
-      else {
-        move();
-      }
+      moveTo(pos + 1);
     });
 
     function moveTo(i) {
-      pos = pos - (i + pos);
-      move();
+      pos = Math.min(Math.max(i, 0), amount - 1);
+      $wrapper.animate({left: (pos * -100) + '%'}, delay);
     }
     
     $pages = $slides.each(function(i, k) {
