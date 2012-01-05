@@ -12,13 +12,12 @@
     var $slideContainer = $elem.find('.slides');
     var $slides = $slideContainer.children().append($('<div>'));
     var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-    var pos = 0;
     var amount = $slides.length;
     var $navi = $elem.find('.navi');
 
     initCSS($slideContainer, axis, amount, $wrapper, dir, $slides);
-    initTitles($slides, $wrapper, $navi, amount, dir, opts.delay, pos);
-    initNavi($elem, $wrapper, $navi, amount, dir, opts.delay, pos);
+    initTitles($slides, $wrapper, $navi, amount, dir, opts.delay);
+    initNavi($elem, $wrapper, $navi, amount, dir, opts.delay);
   }
 
   function initCSS($slideContainer, axis, amount, $wrapper, dir, $slides) {
@@ -31,6 +30,7 @@
       position: 'relative'
     };
     wrapperOpts[axis] = amount * 100 + '%';
+    wrapperOpts[dir] = 0 + '%';
     $wrapper.css(wrapperOpts);
 
     displayMode = dir == 'top'? 'auto': 'inline-block';
@@ -42,37 +42,36 @@
     $slides.each(function(i, e) {$(e).css(slideOpts);});  
   }
 
-  function initTitles($slides, $wrapper, $navi, amount, dir, delay, pos) {
+  function initTitles($slides, $wrapper, $navi, amount, dir, delay) {
     $slides.each(function(i, k) {
       var title = $(k).attr('title') || i + 1;
 
       $('<div>').css('display', 'inline').text(title).bind('click', function() {
-        pos = moveTo(i, $wrapper, $navi, amount, dir, delay);
+        moveTo(function() {return i;}, $wrapper, $navi, amount, dir, delay);
       }).appendTo($navi).addClass('title button');
     });
     updateNavi(0, $navi);
   }
 
-  function initNavi($elem, $wrapper, $navi, amount, dir, delay, pos) {
+  function initNavi($elem, $wrapper, $navi, amount, dir, delay) {
     $elem.find('.left,.up').bind('click', function() {
-      pos = moveTo(pos - 1, $wrapper, $navi, amount, dir, delay);
+      moveTo(function(a) {return a - 1;}, $wrapper, $navi, amount, dir, delay);
     });
 
     $elem.find('.right,.down').bind('click', function() {
-      pos = moveTo(pos + 1, $wrapper, $navi, amount, dir, delay);
+      moveTo(function(a) {return a + 1;}, $wrapper, $navi, amount, dir, delay);
     });  
   }
 
-  function moveTo(i, $wrapper, $navi, amount, dir, delay) {
+  function moveTo(indexCb, $wrapper, $navi, amount, dir, delay) {
     var animProps = {};
+    var i = indexCb(-parseInt($wrapper.css(dir)) / 100);
     var pos = Math.min(Math.max(i, 0), amount - 1);
-      
+
     animProps[dir] = (pos * -100) + '%';
     $wrapper.animate(animProps, delay);
 
     updateNavi(pos, $navi);
-  
-    return pos;
   }
 
   function updateNavi(i, $navi) {
@@ -81,7 +80,6 @@
     $titles.removeClass('selected');
     $titles.eq(i).addClass('selected');
   }
-
 
   $.fn.caro = function (options) {
     return this.each(function () {
