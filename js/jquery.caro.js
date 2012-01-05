@@ -12,15 +12,14 @@
     var $slideContainer = $elem.find('.slides');
     var $slides = $slideContainer.children().append($('<div>'));
     var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-    var amount = $slides.length;
     var $navi = $elem.find('.navi');
 
-    initCSS($slideContainer, axis, amount, $wrapper, dir, $slides);
-    initTitles($slides, $wrapper, $navi, amount, dir, opts.delay);
-    initNavi($elem, $wrapper, $navi, amount, dir, opts.delay);
+    initCSS($slideContainer, axis, $wrapper, dir, $slides);
+    initTitles($slides, $wrapper, $navi, dir, opts.delay);
+    initNavi($elem, $wrapper, $navi, dir, opts.delay, $slides.length);
   }
 
-  function initCSS($slideContainer, axis, amount, $wrapper, dir, $slides) {
+  function initCSS($slideContainer, axis, $wrapper, dir, $slides) {
     var wrapperOpts;
     var slideOpts;
     var displayMode;
@@ -29,7 +28,7 @@
     wrapperOpts = {
       position: 'relative'
     };
-    wrapperOpts[axis] = amount * 100 + '%';
+    wrapperOpts[axis] = $slides.length * 100 + '%';
     wrapperOpts[dir] = 0 + '%';
     $wrapper.css(wrapperOpts);
 
@@ -38,32 +37,39 @@
       display: displayMode,
       'vertical-align': 'top'
     };
-    slideOpts[axis] = (100 / amount) + '%';
+    slideOpts[axis] = (100 / $slides.length) + '%';
     $slides.each(function(i, e) {$(e).css(slideOpts);});  
   }
 
-  function initTitles($slides, $wrapper, $navi, amount, dir, delay) {
+  function initTitles($slides, $wrapper, $navi, dir, delay) {
     $slides.each(function(i, k) {
       var title = $(k).attr('title') || i + 1;
 
       $('<div>').css('display', 'inline').text(title).bind('click', function() {
-        moveTo(function() {return i;}, $wrapper, $navi, amount, dir, delay);
+        var pos = moveTo(function() {return i;}, $wrapper, $slides.length, dir, delay);
+
+        updateNavi(pos, $navi);
       }).appendTo($navi).addClass('title button');
     });
+
     updateNavi(0, $navi);
   }
 
-  function initNavi($elem, $wrapper, $navi, amount, dir, delay) {
+  function initNavi($elem, $wrapper, $navi, dir, delay, amount) {
     $elem.find('.left,.up').bind('click', function() {
-      moveTo(function(a) {return a - 1;}, $wrapper, $navi, amount, dir, delay);
+      var pos = moveTo(function(a) {return a - 1;}, $wrapper, amount, dir, delay);
+
+      updateNavi(pos, $navi);
     });
 
     $elem.find('.right,.down').bind('click', function() {
-      moveTo(function(a) {return a + 1;}, $wrapper, $navi, amount, dir, delay);
-    });  
+      var pos = moveTo(function(a) {return a + 1;}, $wrapper, amount, dir, delay);
+
+      updateNavi(pos, $navi);
+    });
   }
 
-  function moveTo(indexCb, $wrapper, $navi, amount, dir, delay) {
+  function moveTo(indexCb, $wrapper, amount, dir, delay) {
     var animProps = {};
     var i = indexCb(-parseInt($wrapper.css(dir)) / 100);
     var pos = Math.min(Math.max(i, 0), amount - 1);
@@ -71,7 +77,7 @@
     animProps[dir] = (pos * -100) + '%';
     $wrapper.animate(animProps, delay);
 
-    updateNavi(pos, $navi);
+    return pos;
   }
 
   function updateNavi(i, $navi) {
