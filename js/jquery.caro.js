@@ -15,8 +15,17 @@
     var $navi = $elem.find('.navi');
 
     initCSS($slideContainer, axis, $wrapper, dir, $slides);
-    initTitles($slides, $wrapper, $navi, dir, opts.delay);
-    initNavi($elem, $wrapper, $navi, dir, opts.delay, $slides.length);
+    initTitles($slides, $navi, moveTemplate);
+    initNavi($elem, moveTemplate);
+    updateNavi(0, $navi);
+
+    function moveTemplate(cb) {
+      return function() {
+        var pos = moveTo(cb, $wrapper, $slides.length, dir, opts.delay);
+
+        updateNavi(pos, $navi);
+      }
+    }
   }
 
   function initCSS($slideContainer, axis, $wrapper, dir, $slides) {
@@ -41,32 +50,18 @@
     $slides.each(function(i, e) {$(e).css(slideOpts);});  
   }
 
-  function initTitles($slides, $wrapper, $navi, dir, delay) {
+  function initTitles($slides, $navi, move) {
     $slides.each(function(i, k) {
       var title = $(k).attr('title') || i + 1;
 
-      $('<div>').css('display', 'inline').text(title).bind('click', function() {
-        var pos = moveTo(function() {return i;}, $wrapper, $slides.length, dir, delay);
-
-        updateNavi(pos, $navi);
-      }).appendTo($navi).addClass('title button');
+      $('<div>').css('display', 'inline').text(title).bind('click',
+        move(function() {return i;})).appendTo($navi).addClass('title button');
     });
-
-    updateNavi(0, $navi);
   }
 
-  function initNavi($elem, $wrapper, $navi, dir, delay, amount) {
-    $elem.find('.left,.up').bind('click', function() {
-      var pos = moveTo(function(a) {return a - 1;}, $wrapper, amount, dir, delay);
-
-      updateNavi(pos, $navi);
-    });
-
-    $elem.find('.right,.down').bind('click', function() {
-      var pos = moveTo(function(a) {return a + 1;}, $wrapper, amount, dir, delay);
-
-      updateNavi(pos, $navi);
-    });
+  function initNavi($elem, move) {
+    $elem.find('.left,.up').bind('click', move(function(a) {return a - 1;}));
+    $elem.find('.right,.down').bind('click', move(function(a) {return a + 1}));
   }
 
   function moveTo(indexCb, $wrapper, amount, dir, delay) {
