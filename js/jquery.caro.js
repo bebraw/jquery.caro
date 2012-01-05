@@ -54,7 +54,9 @@
     }
     
     $pages = $slides.each(function(i, k) {
-      $('<div>').css('display', 'inline').text(i + 1).bind('click', function() {
+      var title = $(k).attr('title') || i + 1;
+
+      $('<div>').css('display', 'inline').text(title).bind('click', function() {
         moveTo(i);
       }).appendTo($navi).addClass('number button');
     });
