@@ -60,10 +60,14 @@
   }
 
   function initNavi($elem, move) {
-    $elem.find('.left,.up').bind('click', move(function(a) {return a - 1;}));
-    $elem.find('.right,.down').bind('click', move(function(a) {return a + 1}));
-    $elem.find('.first').bind('click', move(function(a) {return 0}));
-    $elem.find('.last').bind('click', move(function(a, len) {return len;}));
+    function bind(sel, cb) {
+      $elem.find(sel).bind('click', move(cb));
+    }
+
+    bind('.prev', function(a) {return a - 1;});
+    bind('.next', function(a) {return a + 1;});
+    bind('.first', function() {return 0;});
+    bind('.last', function(a, len) {return len;});
   }
 
   function moveTo(indexCb, $wrapper, amount, dir, delay) {
@@ -88,10 +92,11 @@
     return this.each(function () {
       var $elem = $(this);
       var opts = $.extend({
+        dir: 'horizontal', // either 'horizontal' or 'vertical'
         delay: 300 // in ms
       }, options);
 
-      var caro = $elem.find('.up').length? verticalCaro: horizontalCaro;
+      var caro = opts.dir == 'horizontal'? horizontalCaro: verticalCaro;
       caro($elem, opts);
     });
   };
