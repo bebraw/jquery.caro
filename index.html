@@ -1,233 +1,305 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
+    <meta charset='utf-8'>
 
-  <title>bebraw/caro.js @ GitHub</title>
+    <title>bebraw/caro.js @ GitHub</title>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  <script src="js/jquery.caro.js" type="text/javascript"></script>
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #d4d4d4;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      max-width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #2b2b2b; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #2b2b2b; }
-    h3 { text-align: center; color: #2b2b2b; }
-    a { color: #2b2b2b; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
- 
-    /* caro.js styles */
-    .button {
-        cursor: pointer;
-    }
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.caro.js" type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            margin-top: 1.0em;
+            background-color: #d4d4d4;
+            font-family: Helvetica, Arial, FreeSans, san-serif;
+            color: #000000;
+        }
 
-    .disabled.button {
-        color: gray;
-    }
+        #container {
+            margin: 0 auto;
+            max-width: 700px;
+        }
 
-    .selected.title.button {
-        font-weight: bold;
-    }
+        h1 {
+            font-size: 3.8em;
+            color: #2b2b2b;
+            margin-bottom: 3px;
+        }
 
-    #horizontalDemo {
-        background-color: white;
-    }
+        h1 .small {
+            font-size: 0.4em;
+        }
 
-    #horizontalDemo .first.button {
-        float: left;
-    }
+        h1 a {
+            text-decoration: none
+        }
 
-    #horizontalDemo .prev.button {
-        float: left;
-        margin-left: 2em;
-    }
+        h2 {
+            font-size: 1.5em;
+            color: #2b2b2b;
+        }
 
-    #horizontalDemo .last.button {
-        float: right;
-    }
-    
-    #horizontalDemo .next.button {
-        float: right;
-        margin-right: 2em;
-    }
+        h3 {
+            text-align: center;
+            color: #2b2b2b;
+        }
 
-    #horizontalDemo .navi {
-        text-align: center;
-    }
+        a {
+            color: #2b2b2b;
+        }
 
-    #horizontalDemo .navi .button {
-        margin-left: 1em;
-    }
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            font-style: italic;
+        }
 
-    #verticalDemo {
-        background: white;
-    }
+        .download {
+            float: right;
+        }
 
-    #verticalDemo .slides {
-        height: 100px; /* important!!! remember to set this */
-        margin: 1em;
-    }
+        pre {
+            background: #000;
+            color: #fff;
+            padding: 15px;
+        }
 
-    #verticalDemo h3 {
-        margin: 0; /* won't work ok without margin reset!!! */
-    }
-    
-    #verticalDemo .button {
-        text-align: center;
-    }
-  </style>
-  <script type="text/javascript">
-    $(function() {
-        $('#horizontalDemo').caro();
-        $('#verticalDemo').caro({delay: 500, dir: 'vertical'});
-        $("#photoDemo").caro();
-    });
-  </script>
+        hr {
+            border: 0;
+            width: 80%;
+            border-bottom: 1px solid #aaa
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 30px;
+            font-style: italic;
+        }
+
+            /* caro.js styles */
+        .button {
+            cursor: pointer;
+        }
+
+        .disabled.button {
+            color: gray;
+        }
+
+        .selected.title.button {
+            font-weight: bold;
+        }
+
+        #horizontalDemo {
+            background-color: white;
+        }
+
+        #horizontalDemo .first.button {
+            float: left;
+        }
+
+        #horizontalDemo .prev.button {
+            float: left;
+            margin-left: 2em;
+        }
+
+        #horizontalDemo .last.button {
+            float: right;
+        }
+
+        #horizontalDemo .next.button {
+            float: right;
+            margin-right: 2em;
+        }
+
+        #horizontalDemo .navi {
+            text-align: center;
+        }
+
+        #horizontalDemo .navi .button {
+            margin-left: 1em;
+        }
+
+        #verticalDemo {
+            background: white;
+        }
+
+        #verticalDemo .slides {
+            height: 100px; /* important!!! remember to set this */
+            margin: 1em;
+        }
+
+        #verticalDemo h3 {
+            margin: 0; /* won't work ok without margin reset!!! */
+        }
+
+        #verticalDemo .button {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('#horizontalDemo').caro();
+            $('#verticalDemo').caro({delay:500, dir:'vertical'});
+            $("#photoDemo").caro();
+        });
+    </script>
 </head>
 
 <body>
-  <a href="https://github.com/bebraw/caro.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+<a href="https://github.com/bebraw/caro.js"><img style="position: absolute; top: 0; right: 0; border: 0;"
+                                                 src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                                                 alt="Fork me on GitHub"/></a>
 
-  <div id="container">
+<div id="container">
 
     <div class="download">
-      <a href="https://github.com/bebraw/caro.js/zipball/gh-pages">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/bebraw/caro.js/tarball/gh-pages">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+        <a href="https://github.com/bebraw/caro.js/zipball/gh-pages">
+            <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
+        <a href="https://github.com/bebraw/caro.js/tarball/gh-pages">
+            <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
     </div>
 
     <h1><a href="https://github.com/bebraw/caro.js">caro.js</a>
-      <span class="small">by <a href="https://github.com/bebraw">bebraw</a></span></h1>
+        <span class="small">by <a href="https://github.com/bebraw">bebraw</a></span></h1>
 
     <div class="description">
-      Simple, scaleable carousel for jQuery
+        Simple, scaleable carousel for jQuery
     </div>
 
-    <p>Try scaling the browser window to see how it works. As you can see this thing here fits well in modern, fluid layouts.</p>
+    <p>Try scaling the browser window to see how it works. As you can see this thing here fits well in modern, fluid
+        layouts.</p>
 
-      <h2>Demo</h2>
+    <h2>Demo</h2>
 
-        <h3>Horizontal Carousel</h3>
-        <div id="horizontalDemo">
-            <div class="first button">first</div>
-            <div class="prev button">left</div>
-            <div class="last button">last</div>
-            <div class="next button">right</div>
-            <div class="slides">
-                <div title="Powerful Lion">
-                    <h3>Lion</h3>
-                    <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also known as the king of the jungle for some reason.</p>
-                </div>
-                <div title="Cheeky Monkey">
-                    <h3>Monkey</h3>
-                    <p>Apparently these are cheeky. Not sure why.</p>
-                </div>
-                <div title="Mighty Bear">
-                    <h3>Bear</h3>
-                    <p>Usually brown, black or white. Try to avoid these if possible.</p>
-                </div>
-                <div title="Striped Zebra">
-                    <h3>Zebra</h3>
-                    <p>It has either white stripes on black or black on white. This is the subject of some really intense scientific debate.</p>
-                </div>
+    <h3>Horizontal Carousel</h3>
+
+    <div id="horizontalDemo">
+        <div class="first button">first</div>
+        <div class="prev button">left</div>
+        <div class="last button">last</div>
+        <div class="next button">right</div>
+        <div class="slides">
+            <div title="Powerful Lion">
+                <h3>Lion</h3>
+
+                <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
+                    known as the king of the jungle for some reason.</p>
             </div>
-            <div class="navi"></div>
+            <div title="Cheeky Monkey">
+                <h3>Monkey</h3>
+
+                <p>Apparently these are cheeky. Not sure why.</p>
+            </div>
+            <div title="Mighty Bear">
+                <h3>Bear</h3>
+
+                <p>Usually brown, black or white. Try to avoid these if possible.</p>
+            </div>
+            <div title="Striped Zebra">
+                <h3>Zebra</h3>
+
+                <p>It has either white stripes on black or black on white. This is the subject of some really intense
+                    scientific debate.</p>
+            </div>
         </div>
+        <div class="navi"></div>
+    </div>
 
-        <h3>Vertical Carousel</h3>
-          <div id="verticalDemo">
-            <div class="prev button">up</div>
-            <div class="slides">
-                <div>
-                    <h3>Lion</h3>
-                    <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also known as the king of the jungle for some reason.</p>
-                </div>
-                <div>
-                    <h3>Monkey</h3>
-                    <p>Apparently these are cheeky. Not sure why.</p>
-                </div>
-                <div>
-                    <h3>Bear</h3>
-                    <p>Usually brown, black or white. Try to avoid these if possible.</p>
-                </div>
-                <div>
-                    <h3>Zebra</h3>
-                    <p>It has either white stripes on black or black on white. This is the subject of some really intense scientific debate.</p>
-                </div>
+    <h3>Vertical Carousel</h3>
+
+    <div id="verticalDemo">
+        <div class="prev button">up</div>
+        <div class="slides">
+            <div>
+                <h3>Lion</h3>
+
+                <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
+                    known as the king of the jungle for some reason.</p>
             </div>
-            <div class="next button">down</div>
+            <div>
+                <h3>Monkey</h3>
+
+                <p>Apparently these are cheeky. Not sure why.</p>
+            </div>
+            <div>
+                <h3>Bear</h3>
+
+                <p>Usually brown, black or white. Try to avoid these if possible.</p>
+            </div>
+            <div>
+                <h3>Zebra</h3>
+
+                <p>It has either white stripes on black or black on white. This is the subject of some really intense
+                    scientific debate.</p>
+            </div>
         </div>
-       
-        <h3>Photo Gallery</h3>
-          <div id="photoDemo">
-            <div class="controls">
-              <span class="prev button">previous</span>
-              <span class="play button">play</span>
-              <span class="stop button">stop</span>
-              <span class="next button">next</span>
-            </div>
-            <div class="slides">
-                <div>
-                  <img src="images/cow.jpg" title="Cow" />
-                </div>
-                <div>
-                  <img src="images/grove.jpg" title="Grove" />
-                </div>
-                <div>
-                  <img src="images/lake.jpg" title="Lake" />
-                </div>
-                <div>
-                    <img src="images/sunset.jpg" title="Sunset" />
-                </div>
-                <div>
-                    <img src="images/trientalis.jpg" title="Trientalis Europaea" />
-                </div>
-            </div>
-          </div>
-        
-      <h2>Dependencies</h2>
-      <p>jQuery (1.something. Let me know if it does not work for you)</p>
-    
-      <h2>Installation</h2>
-      <p>Copy jquery.caro.js to some appropriate place, link to it at your HTML, use $.caro($elem, opts);. Check out opts and markup at source.</p>
-      
-      <h2>License</h2>
-      <p>MIT</p>
+        <div class="next button">down</div>
+    </div>
 
-      <h2>Contact</h2>
-      <p>Juho Vepsäläinen (bebraw youknowwhat gmail dot com)</p>
+    <h3>Photo Gallery</h3>
+
+    <div id="photoDemo">
+        <div class="controls">
+            <span class="prev button">previous</span>
+            <span class="play button">play</span>
+            <span class="stop button">stop</span>
+            <span class="next button">next</span>
+        </div>
+        <div class="slides">
+            <div>
+                <img src="images/cow.jpg" title="Cow"/>
+            </div>
+            <div>
+                <img src="images/grove.jpg" title="Grove"/>
+            </div>
+            <div>
+                <img src="images/lake.jpg" title="Lake"/>
+            </div>
+            <div>
+                <img src="images/sunset.jpg" title="Sunset"/>
+            </div>
+            <div>
+                <img src="images/trientalis.jpg" title="Trientalis Europaea"/>
+            </div>
+        </div>
+    </div>
+
+    <h2>Dependencies</h2>
+
+    <p>jQuery (1.something. Let me know if it does not work for you)</p>
+
+    <h2>Installation</h2>
+
+    <p>Copy jquery.caro.js to some appropriate place, link to it at your HTML, use $.caro($elem, opts);. Check out opts
+        and markup at source.</p>
+
+    <h2>License</h2>
+
+    <p>MIT</p>
+
+    <h2>Contact</h2>
+
+    <p>Juho Vepsäläinen (bebraw youknowwhat gmail dot com)</p>
 
     <h2>Download</h2>
+
     <p>
-      You can download this project in either
-      <a href="https://github.com/bebraw/caro.js/zipball/gh-pages">zip</a> or
-      <a href="https://github.com/bebraw/caro.js/tarball/gh-pages">tar formats.
+        You can download this project in either
+        <a href="https://github.com/bebraw/caro.js/zipball/gh-pages">zip</a> or
+        <a href="https://github.com/bebraw/caro.js/tarball/gh-pages">tar formats.
     </p>
+
     <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/bebraw/caro.js</pre>
+        by running:
+    <pre>$ git clone git://github.com/bebraw/caro.js</pre>
     </p>
 
     <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/bebraw/caro.js">bebraw/caro.js</a>
+        get the source code on GitHub : <a href="https://github.com/bebraw/caro.js">bebraw/caro.js</a>
     </div>
 
-  </div>
+</div>
 
 </body>
 </html>
