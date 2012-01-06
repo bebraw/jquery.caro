@@ -94,6 +94,7 @@
     $(function() {
         $('#horizontalDemo').caro();
         $('#verticalDemo').caro({delay: 500, dir: 'vertical'});
+        $("#photoDemo").caro();
     });
   </script>
 </head>
@@ -171,6 +172,31 @@
             </div>
             <div class="next button">down</div>
         </div>
+       
+        <h3>Photo Gallery</h3>
+          <div id="photoDemo">
+            <div class="controls">
+              <span class="prev button">previous</span>
+              <span class="next button">next</span>
+            </div>
+            <div class="slides">
+                <div>
+                  <img src="images/cow.jpg" title="Cow" />
+                </div>
+                <div>
+                  <img src="images/grove.jpg" title="Grove" />
+                </div>
+                <div>
+                  <img src="images/lake.jpg" title="Lake" />
+                </div>
+                <div>
+                    <img src="images/sunset.jpg" title="Sunset" />
+                </div>
+                <div>
+                    <img src="images/trientalis.jpg" title="Trientalis Europaea" />
+                </div>
+            </div>
+          </div>
         
       <h2>Dependencies</h2>
       <p>jQuery (1.something. Let me know if it does not work for you)</p>
