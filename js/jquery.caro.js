@@ -17,18 +17,19 @@
 
     initCSS($slideContainer, axis, $wrapper, dir, $slides);
     initTitles($slides, $navi, moveTemplate);
-    initNavi($elem, moveTemplate);
+    initNavi($elem, $wrapper, moveTemplate);
+    initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
     updateNavi($navi, 0);
     updateButtons($elem, 0, amount);
 
-    function moveTemplate(cb) {
+    function moveTemplate(indexCb, animCb) {
       return function() {
         var oldI = -parseInt($wrapper.css(dir)) / 100;
-        var newI = Math.min(Math.max(cb(oldI, amount - 1), 0), amount - 1);
+        var newI = Math.min(Math.max(indexCb(oldI, amount - 1), 0), amount - 1);
         var animProps = {};
 
         animProps[dir] = (newI * -100) + '%';
-        $wrapper.animate(animProps, opts.delay);
+        $wrapper.animate(animProps, opts.delay, animCb);
 
         updateNavi($navi, newI);
         updateButtons($elem, newI, amount);
@@ -67,13 +68,34 @@
     });
   }
 
-  function initNavi($elem, move) {
-    function bind(sel, cb) {$elem.find(sel).bind('click', move(cb));}
+  function initNavi($elem, $wrapper, move) {
+    function bind(sel, cb) {
+        $elem.find(sel).bind('click', function() {
+            $wrapper.clearQueue(); // make sure these stop anim
+            move(cb)();
+        });
+    };
 
     bind('.prev', function(a) {return a - 1;});
     bind('.next', function(a) {return a + 1;});
     bind('.first', function() {return 0;});
     bind('.last', function(a, len) {return len;});
+  }
+
+  function initPlayback($elem, $wrapper, move, autoPlay, still) {
+    var anim = move(function(a, len) {
+      return a == len? 0: a + 1;
+    }, function() {
+      $(this).delay(still).queue(function() {
+          anim();
+          $(this).dequeue();
+      });
+    });
+
+    $elem.find('.play').bind('click', anim);
+    $elem.find('.stop').bind('click', function() {
+      $wrapper.clearQueue();
+    });
   }
 
   function updateNavi($navi, i) {
@@ -96,7 +118,9 @@
       var $elem = $(this);
       var opts = $.extend({
         dir: 'horizontal', // either 'horizontal' or 'vertical'
-        delay: 300 // in ms
+        delay: 300, // in ms
+        still: 1000, // how long slide stays still in playback mode
+        autoPlay: false
       }, options);
 
       var caro = opts.dir == 'horizontal'? horizontalCaro: verticalCaro;
