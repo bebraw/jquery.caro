@@ -42,15 +42,25 @@
     #horizontalDemo {
         background-color: white;
     }
-    
-    #horizontalDemo .left.button {
+
+    #horizontalDemo .first.button {
         float: left;
     }
 
-    #horizontalDemo .right.button {
+    #horizontalDemo .left.button {
+        float: left;
+        margin-left: 2em;
+    }
+
+    #horizontalDemo .last.button {
         float: right;
     }
     
+    #horizontalDemo .right.button {
+        float: right;
+        margin-right: 2em;
+    }
+
     #horizontalDemo .navi {
       text-align: center;
     }
@@ -109,7 +119,9 @@
 
         <h3>Horizontal Carousel</h3>
         <div id="horizontalDemo">
+            <div class="first button">first</div>
             <div class="left button">left</div>
+            <div class="last button">last</div>
             <div class="right button">right</div>
             <div class="slides">
                 <div title="Powerful Lion">

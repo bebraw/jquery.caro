@@ -62,11 +62,13 @@
   function initNavi($elem, move) {
     $elem.find('.left,.up').bind('click', move(function(a) {return a - 1;}));
     $elem.find('.right,.down').bind('click', move(function(a) {return a + 1}));
+    $elem.find('.first').bind('click', move(function(a) {return 0}));
+    $elem.find('.last').bind('click', move(function(a, len) {return len;}));
   }
 
   function moveTo(indexCb, $wrapper, amount, dir, delay) {
     var animProps = {};
-    var i = indexCb(-parseInt($wrapper.css(dir)) / 100);
+    var i = indexCb(-parseInt($wrapper.css(dir)) / 100, amount - 1);
     var pos = Math.min(Math.max(i, 0), amount - 1);
 
     animProps[dir] = (pos * -100) + '%';
