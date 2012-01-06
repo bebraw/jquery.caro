@@ -13,6 +13,7 @@
     var $slides = $slideContainer.children().append($('<div>'));
     var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
     var $navi = $elem.find('.navi');
+    var amount = $slides.length;
 
     initCSS($slideContainer, axis, $wrapper, dir, $slides);
     initTitles($slides, $navi, moveTemplate);
@@ -21,7 +22,13 @@
 
     function moveTemplate(cb) {
       return function() {
-        var pos = moveTo(cb, $wrapper, $slides.length, dir, opts.delay);
+        var oldI = -parseInt($wrapper.css(dir)) / 100;
+        var i = cb(oldI, amount - 1);
+        var pos = Math.min(Math.max(i, 0), amount - 1);
+        var animProps = {};
+
+        animProps[dir] = (pos * -100) + '%';
+        $wrapper.animate(animProps, opts.delay);
 
         updateNavi(pos, $navi);
       }
@@ -60,25 +67,12 @@
   }
 
   function initNavi($elem, move) {
-    function bind(sel, cb) {
-      $elem.find(sel).bind('click', move(cb));
-    }
+    function bind(sel, cb) {$elem.find(sel).bind('click', move(cb));}
 
     bind('.prev', function(a) {return a - 1;});
     bind('.next', function(a) {return a + 1;});
     bind('.first', function() {return 0;});
     bind('.last', function(a, len) {return len;});
-  }
-
-  function moveTo(indexCb, $wrapper, amount, dir, delay) {
-    var animProps = {};
-    var i = indexCb(-parseInt($wrapper.css(dir)) / 100, amount - 1);
-    var pos = Math.min(Math.max(i, 0), amount - 1);
-
-    animProps[dir] = (pos * -100) + '%';
-    $wrapper.animate(animProps, delay);
-
-    return pos;
   }
 
   function updateNavi(i, $navi) {
