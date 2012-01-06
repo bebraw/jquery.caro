@@ -18,19 +18,20 @@
     initCSS($slideContainer, axis, $wrapper, dir, $slides);
     initTitles($slides, $navi, moveTemplate);
     initNavi($elem, moveTemplate);
-    updateNavi(0, $navi);
+    updateNavi($navi, 0);
+    updateButtons($elem, 0, amount);
 
     function moveTemplate(cb) {
       return function() {
         var oldI = -parseInt($wrapper.css(dir)) / 100;
-        var i = cb(oldI, amount - 1);
-        var pos = Math.min(Math.max(i, 0), amount - 1);
+        var newI = Math.min(Math.max(cb(oldI, amount - 1), 0), amount - 1);
         var animProps = {};
 
-        animProps[dir] = (pos * -100) + '%';
+        animProps[dir] = (newI * -100) + '%';
         $wrapper.animate(animProps, opts.delay);
 
-        updateNavi(pos, $navi);
+        updateNavi($navi, newI);
+        updateButtons($elem, newI, amount);
       }
     }
   }
@@ -75,11 +76,19 @@
     bind('.last', function(a, len) {return len;});
   }
 
-  function updateNavi(i, $navi) {
+  function updateNavi($navi, i) {
     var $titles = $navi.find('.title.button');
 
     $titles.removeClass('selected');
     $titles.eq(i).addClass('selected');
+  }
+
+  function updateButtons($elem, i, amount) {
+    var $begin = $elem.find('.first,.prev');
+    var $end = $elem.find('.last,.next');
+
+    i == 0? $begin.addClass('disabled'): $begin.removeClass('disabled');
+    i == amount - 1? $end.addClass('disabled'): $end.removeClass('disabled');
   }
 
   $.fn.caro = function (options) {
