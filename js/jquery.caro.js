@@ -25,7 +25,7 @@
 
         function moveTemplate(indexCb, animCb) {
             return function () {
-                pos = Math.min(Math.max(indexCb(pos, amount - 1), 0), amount - 1);
+                pos = clamp(indexCb(pos, amount - 1), 0, amount - 1);
 
                 var animProps = {};
                 animProps[dir] = (pos * -100) + '%';
@@ -37,9 +37,11 @@
         }
     }
 
-    function initCSS($slideContainer, axis, $wrapper, dir, $slides) {
-        var displayMode;
+    function clamp(i, min, max) {
+        return Math.min(Math.max(i, min), max);
+    }
 
+    function initCSS($slideContainer, axis, $wrapper, dir, $slides) {
         $slideContainer.css('overflow', 'hidden');
         var wrapperOpts = {
             position:'relative'
@@ -48,9 +50,8 @@
         wrapperOpts[dir] = 0 + '%';
         $wrapper.css(wrapperOpts);
 
-        displayMode = dir == 'top' ? 'auto' : 'inline-block';
         var slideOpts = {
-            display:displayMode,
+            display: dir == 'top'? 'auto': 'inline-block',
             'vertical-align':'top'
         };
         slideOpts[axis] = (100 / $slides.length) + '%';
@@ -73,12 +74,10 @@
     function initNavi($elem, $wrapper, move) {
         function bind(sel, cb) {
             $elem.find(sel).bind('click', function () {
-                $wrapper.clearQueue(); // make sure these stop anim
+                $wrapper.clearQueue();
                 move(cb)();
             });
         }
-
-        ;
 
         bind('.prev', function (a) {
             return a - 1;
