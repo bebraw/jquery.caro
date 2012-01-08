@@ -14,6 +14,7 @@
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
         var $navi = $elem.find('.navi');
         var amount = $slides.length;
+        var pos = 0;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
         initTitles($slides, $navi, moveTemplate);
@@ -24,15 +25,14 @@
 
         function moveTemplate(indexCb, animCb) {
             return function () {
-                var oldI = -parseInt($wrapper.css(dir)) / 100;
-                var newI = Math.min(Math.max(indexCb(oldI, amount - 1), 0), amount - 1);
-                var animProps = {};
+                pos = Math.min(Math.max(indexCb(pos, amount - 1), 0), amount - 1);
 
-                animProps[dir] = (newI * -100) + '%';
+                var animProps = {};
+                animProps[dir] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
-                updateNavi($navi, newI);
-                updateButtons($elem, newI, amount);
+                updateNavi($navi, pos);
+                updateButtons($elem, pos, amount);
             }
         }
     }
