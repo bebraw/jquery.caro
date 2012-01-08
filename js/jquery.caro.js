@@ -22,6 +22,7 @@
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
         updateNavi($navi, 0);
         updateButtons($elem, 0, amount);
+        disableSelection($elem);
 
         function moveTemplate(indexCb, animCb) {
             return function () {
@@ -123,6 +124,19 @@
         i == 0 ? $begin.addClass('disabled') : $begin.removeClass('disabled');
         i == amount - 1 ? $end.addClass('disabled') : $end.removeClass('disabled');
     }
+
+    function disableSelection($e) {
+        // http://stackoverflow.com/questions/2700000/how-to-disable-text-selection-using-jquery
+        return $e.each(function() {           
+            $(this).attr('unselectable', 'on').css({
+                   '-moz-user-select':'none',
+                   '-webkit-user-select':'none',
+                   'user-select':'none'
+               }).each(function() {
+                   this.onselectstart = function() { return false; };
+               });
+        });
+    };
 
     $.fn.caro = function (options) {
         return this.each(function () {
