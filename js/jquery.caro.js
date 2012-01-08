@@ -20,8 +20,7 @@
         initTitles($slides, $navi, moveTemplate);
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
-        updateNavi($navi, 0);
-        updateButtons($elem, 0, amount);
+        update(pos);
         disableSelection($elem);
 
         function moveTemplate(indexCb, animCb) {
@@ -32,9 +31,14 @@
                 animProps[dir] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
-                updateNavi($navi, pos);
-                updateButtons($elem, pos, amount);
+                update(pos);
             }
+        }
+
+        function update(i) {
+            updateNavi($navi, i);
+            updateButtons($elem, i, amount);
+            updateSlides($slides, i);
         }
     }
 
@@ -57,7 +61,7 @@
         };
         slideOpts[axis] = (100 / $slides.length) + '%';
         $slides.each(function (i, e) {
-            $(e).css(slideOpts);
+            $(e).css(slideOpts).addClass('slide');
         });
     }
 
@@ -123,6 +127,24 @@
 
         i == 0 ? $begin.addClass('disabled') : $begin.removeClass('disabled');
         i == amount - 1 ? $end.addClass('disabled') : $end.removeClass('disabled');
+    }
+
+    function updateSlides($slides, i) {
+        $slides.each(function (j, e) {
+            $(e).removeClass('prev').removeClass('next');
+
+            if(j == i - 1) {
+                $(e).addClass('prev');
+            }
+
+            if(j == i) {
+                $(e).addClass('current');
+            }
+
+            if(j == i + 1) {
+                $(e).addClass('next');
+            }
+        });
     }
 
     function disableSelection($e) {
