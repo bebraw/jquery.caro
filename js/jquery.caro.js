@@ -12,7 +12,7 @@
         var $slideContainer = $elem.find('.slides');
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $elem.find('.navi');
+        var $navi = $elem.find('.' + opts.naviClass);
         var amount = $slides.length;
         var pos = 0;
 
@@ -164,10 +164,11 @@
         return this.each(function () {
             var $elem = $(this);
             var opts = $.extend({
-                dir:'horizontal', // either 'horizontal' or 'vertical'
-                delay:300, // in ms
-                still:1000, // how long slide stays still in playback mode
-                autoPlay:false
+                dir: 'horizontal', // either 'horizontal' or 'vertical'
+                delay: 300, // in ms
+                still: 1000, // how long slide stays still in playback mode
+                autoPlay: false,
+                naviClass: 'navi'
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;
@@ -175,4 +176,3 @@
         });
     };
 })(jQuery);
-
