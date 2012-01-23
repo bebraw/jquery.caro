@@ -17,7 +17,7 @@
         var pos = 0;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
-        initTitles($slides, $navi, moveTemplate);
+        initTitles($slides, $navi, moveTemplate, opts.autoNavi);
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
         update(pos);
@@ -65,14 +65,19 @@
         });
     }
 
-    function initTitles($slides, $navi, move) {
+    function initTitles($slides, $navi, move, autoNavi) {
         $slides.each(function (i, k) {
-            var title = $(k).attr('title') || i + 1;
-
-            $('<div>').css('display', 'inline').text(title).bind('click',
+            var $e = $('<div>').css('display', 'inline').bind('click',
                 move(function () {
                     return i;
                 })).appendTo($navi).addClass('title button');
+
+            if(autoNavi) {
+                $(k).clone().appendTo($e);
+            }
+            else {
+                $e.text($(k).attr('title') || i + 1);
+            }
         });
     }
 
@@ -168,7 +173,8 @@
                 delay: 300, // in ms
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
-                naviClass: 'navi'
+                naviClass: 'navi',
+                autoNavi: false
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;

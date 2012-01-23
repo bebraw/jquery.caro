@@ -140,12 +140,26 @@
         #photoDemo {
             text-align: center;
         }
+
+        #photoDemo .controls {
+            margin-bottom: 1em;
+        }
+
+        #photoDemo .navi {
+            margin-top: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+        #photoDemo .navi .title img {
+            width: 50px;
+        }
     </style>
     <script type="text/javascript">
         $(function () {
             $('#horizontalDemo').caro();
             $('#verticalDemo').caro({delay:500, dir:'vertical'});
-            $("#photoDemo").caro();
+            $("#photoDemo").caro({autoNavi: true});
         });
     </script>
 </head>
@@ -267,6 +281,7 @@
                 <img src="images/trientalis.jpg" title="Trientalis Europaea"/>
             </div>
         </div>
+        <div class="navi"></div>
     </div>
 
     <h2>Dependencies</h2>
