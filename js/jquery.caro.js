@@ -59,7 +59,17 @@
             display: dir == 'top'? 'auto': 'inline-block',
             'vertical-align':'top'
         };
-        slideOpts[axis] = (100 / $slides.length) + '%';
+        var len = 100 / $slides.length;
+        slideOpts[axis] = parseInt(len) + '%';
+
+        // opera hack! opera rounds width so we need to deal with that using some
+        // padding
+        if(axis == 'width') {
+            slideOpts['padding-right'] = len - parseInt(len) + '%';
+        }
+        else {
+            slideOpts['padding-bottom'] = len - parseInt(len) + '%';
+        }
         $slides.each(function (i, e) {
             $(e).css(slideOpts).addClass('slide');
         });
