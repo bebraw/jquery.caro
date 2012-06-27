@@ -25,7 +25,12 @@
 
         function moveTemplate(indexCb, animCb) {
             return function () {
-                pos = clamp(indexCb(pos, amount - 1), 0, amount - 1);
+                if(opts.cycle) {
+                    pos = indexCb(pos, amount - 1);
+                    if(pos < 0) pos = amount - 1;
+                    if(pos > amount - 1) pos = 0;
+                }
+                else pos = clamp(indexCb(pos, amount - 1), 0, amount - 1);
 
                 var animProps = {};
                 animProps[dir] = (pos * -100) + '%';
@@ -37,7 +42,7 @@
 
         function update(i) {
             updateNavi($navi, i);
-            updateButtons($elem, i, amount);
+            if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
         }
     }
@@ -187,7 +192,8 @@
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
                 naviClass: 'navi',
-                autoNavi: false
+                autoNavi: false,
+                cycle: false
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;
