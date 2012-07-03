@@ -1,0 +1,84 @@
+.demo {
+    margin-bottom: 1em;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.disabled.button {
+    color: gray;
+}
+
+.selected.title.button {
+    font-weight: bold;
+}
+
+#horizontalDemo {
+    background-color: white;
+}
+
+#horizontalDemo .buttons {
+    overflow: auto;
+}
+
+#horizontalDemo .first.button {
+    float: left;
+}
+
+#horizontalDemo .prev.button {
+    float: left;
+    margin-left: 2em;
+}
+
+#horizontalDemo .last.button {
+    float: right;
+}
+
+#horizontalDemo .next.button {
+    float: right;
+    margin-right: 2em;
+}
+
+#horizontalDemo .navi {
+    text-align: center;
+}
+
+#horizontalDemo .navi .button {
+    margin-left: 1em;
+}
+
+#verticalDemo {
+    background: white;
+}
+
+#verticalDemo .slides {
+    height: 100px; /* important!!! remember to set this */
+    margin: 1em;
+}
+
+#verticalDemo h3 {
+    margin: 0; /* won't work ok without margin reset!!! */
+}
+
+#verticalDemo .button {
+    text-align: center;
+}
+
+#photoDemo {
+    text-align: center;
+}
+
+#photoDemo .controls {
+    margin-bottom: 1em;
+}
+
+#photoDemo .navi {
+    margin-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#photoDemo .navi .title img {
+    width: 50px;
+}

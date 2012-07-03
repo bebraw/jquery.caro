@@ -1,157 +1,57 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
     <meta name="description" content="Simple, scaleable carousel for jQuery.">
     <meta name="author" content="Juho Vepsäläinen">
 
-    <title>bebraw/caro.js @ GitHub</title>
+    <title>caro.js by bebraw</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pygment_trac.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="js/jquery.caro.js" type="text/javascript"></script>
-    <style type="text/css">
-        .button {
-            cursor: pointer;
-        }
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="js/jquery.caro.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+        $('#horizontalDemo').caro();
+        $('#verticalDemo').caro({delay:500, dir:'vertical'});
+        $("#photoDemo").caro({autoNavi: true, cycle: true});
+    });
+  </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>caro.js</h1>
+        <p>Simple, scaleable for jQuery (MIT)</p>
+        <p class="view"><a href="https://github.com/bebraw/caro.js">View the Project on GitHub <small>bebraw/caro.js</small></a></p>
+        <ul>
+          <li><a href="https://github.com/bebraw/caro.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bebraw/caro.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bebraw/caro.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>caro.js - Simple, scaleable carousel for jQuery</h1>
 
-        .disabled.button {
-            color: gray;
-        }
+<p>caro.js makes it easy to implement carousels, presentations and such. It
+scales somewhat well and fits in a responsive layout. Examine the demos below
+to see how it works out.</p>
+      </section>
+      <section>
 
-        .selected.title.button {
-            font-weight: bold;
-        }
+    <h2>Horizontal Carousel</h2>
 
-        #horizontalDemo {
-            background-color: white;
-        }
-
-        #horizontalDemo .buttons {
-            overflow: auto;
-        }
-
-        #horizontalDemo .first.button {
-            float: left;
-        }
-
-        #horizontalDemo .prev.button {
-            float: left;
-            margin-left: 2em;
-        }
-
-        #horizontalDemo .last.button {
-            float: right;
-        }
-
-        #horizontalDemo .next.button {
-            float: right;
-            margin-right: 2em;
-        }
-
-        #horizontalDemo .navi {
-            text-align: center;
-        }
-
-        #horizontalDemo .navi .button {
-            margin-left: 1em;
-        }
-
-        #verticalDemo {
-            background: white;
-        }
-
-        #verticalDemo .slides {
-            height: 100px; /* important!!! remember to set this */
-            margin: 1em;
-        }
-
-        #verticalDemo h3 {
-            margin: 0; /* won't work ok without margin reset!!! */
-        }
-
-        #verticalDemo .button {
-            text-align: center;
-        }
-
-        #photoDemo {
-            text-align: center;
-        }
-
-        #photoDemo .controls {
-            margin-bottom: 1em;
-        }
-
-        #photoDemo .navi {
-            margin-top: 1em;
-            padding-left: 1em;
-            padding-right: 1em;
-        }
-
-        #photoDemo .navi .title img {
-            width: 50px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(function () {
-            $('#horizontalDemo').caro();
-            $('#verticalDemo').caro({delay:500, dir:'vertical'});
-            $("#photoDemo").caro({autoNavi: true, cycle: true});
-        });
-    </script>
-</head>
-
-<body>
-<a href="https://github.com/bebraw/caro.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/></a>
-
-<div class="container">
-<div class="row">
-    <h1><a href="https://github.com/bebraw/caro.js">caro.js</a>
-        <span class="small">by <a href="https://github.com/bebraw">bebraw</a></span></h1>
-
-    <div class="description">
-        Simple, scaleable carousel for jQuery
-    </div>
-
-    <p>Try scaling the browser window to see how it works. As you can see this thing here fits well in modern, fluid
-        layouts.</p>
-
-    <h2>License</h2>
-
-    <div class="license">MIT</div>
-
-    <h2>Dependencies</h2>
-
-    <p>jQuery (1.something)</p>
-
-    <h2>Installation</h2>
-
-    <p>Copy jquery.caro.js to some appropriate place, link to it at your HTML, use <pre>$(selector).caro($opts);</pre> Check out opts and markup at source.</p>
-
-    <h2>Download</h2>
-
-    <div class="download">
-        <a href="https://github.com/bebraw/caro.js/zipball/gh-pages">
-            <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-        <a href="https://github.com/bebraw/caro.js/tarball/gh-pages">
-            <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a> by running: <pre>$ git clone git://github.com/bebraw/caro.js</pre></p>
-
-    <p>Get the source code on GitHub : <a href="https://github.com/bebraw/caro.js">bebraw/caro.js</a></p>
-</div>
-
-<div class="row">
-    <h2>Demo</h2>
-
-    <h3>Horizontal Carousel</h3>
-
-    <div id="horizontalDemo">
+    <div id="horizontalDemo" class="demo">
         <div class="buttons">
             <div class="first button">first</div>
             <div class="prev button">left</div>
@@ -185,9 +85,9 @@
         <div class="navi"></div>
     </div>
 
-    <h3>Vertical Carousel</h3>
+    <h2>Vertical Carousel</h2>
 
-    <div id="verticalDemo">
+    <div id="verticalDemo" class="demo">
         <div class="prev button">up</div>
         <div class="slides">
             <div>
@@ -216,9 +116,9 @@
         <div class="next button">down</div>
     </div>
 
-    <h3>Photo Gallery</h3>
+    <h2>Photo Gallery</h2>
 
-    <div id="photoDemo">
+    <div id="photoDemo" class="demo">
         <div class="controls">
             <span class="prev button">previous</span>
             <span class="play button">play</span>
@@ -244,8 +144,13 @@
         </div>
         <div class="navi"></div>
     </div>
-</div>
-</div>
 
-</body>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/bebraw">bebraw</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
 </html>
