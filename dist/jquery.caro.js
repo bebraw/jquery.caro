@@ -1,5 +1,5 @@
-/*! caro.js - v0.6.0 - 2012-10-28
-* http://bebraw.github.com/yabox.js/
+/*! caro.js - v0.6.1 - 2012-10-28
+* http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
 /* MIT (c) Juho Vepsalainen */
