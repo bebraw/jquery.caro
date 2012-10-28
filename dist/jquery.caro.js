@@ -28,7 +28,7 @@
         disableSelection($elem);
 
         function moveTemplate(indexCb, animCb) {
-            return function () {
+            return function() {
                 if(opts.cycle) {
                     pos = indexCb(pos, amount - 1);
                     if(pos < 0) pos = amount - 1;
@@ -86,10 +86,14 @@
 
     function initTitles($slides, $navi, move, autoNavi) {
         $slides.each(function (i, k) {
-            var $e = $('<div>').css('display', 'inline').bind('click',
-                move(function () {
-                    return i;
-                })).appendTo($navi).addClass('title button');
+            var $e = $('<a>', {href: '#'}).css('display', 'inline').bind('click',
+                function(e) {
+                    e.preventDefault();
+
+                    move(function () {
+                        return i;
+                    })();
+                }).appendTo($navi).addClass('title button');
 
             if(autoNavi) {
                 $(k).clone().appendTo($e);
@@ -102,7 +106,8 @@
 
     function initNavi($elem, $wrapper, move) {
         function bind(sel, cb) {
-            $elem.find(sel).bind('click', function () {
+            $elem.find(sel).bind('click', function (e) {
+                e.preventDefault();
                 $wrapper.clearQueue();
                 move(cb)();
             });
@@ -126,14 +131,20 @@
         var anim = move(function (a, len) {
             return a == len ? 0 : a + 1;
         }, function () {
-            $(this).delay(still).queue(function () {
+            $(this).delay(still).queue(function() {
                 anim();
                 $(this).dequeue();
             });
         });
 
-        $elem.find('.play').bind('click', anim);
-        $elem.find('.stop').bind('click', function () {
+        $elem.find('.play').bind('click', function(e) {
+            e.preventDefault();
+
+            anim();
+        });
+        $elem.find('.stop').bind('click', function(e) {
+            e.preventDefault();
+
             $wrapper.clearQueue();
         });
     }

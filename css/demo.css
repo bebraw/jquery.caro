@@ -2,10 +2,6 @@
     margin-bottom: 1em;
 }
 
-.button {
-    cursor: pointer;
-}
-
 .disabled.button {
     color: gray;
 }
