@@ -1,4 +1,4 @@
-/*! caro.js - v0.6.2 - 2012-10-28
+/*! caro.js - v0.6.2 - 2012-11-01
 * http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
@@ -48,6 +48,12 @@
             updateNavi($navi, i);
             if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
+
+            if(opts.resize) {
+                $slideContainer.animate({
+                    'height': $slides.eq(pos).height()
+                }, opts.resizeDelay);
+            }
         }
     }
 
@@ -187,7 +193,7 @@
 
     function disableSelection($e) {
         // http://stackoverflow.com/questions/2700000/how-to-disable-text-selection-using-jquery
-        return $e.each(function() {           
+        return $e.each(function() {
             $(this).attr('unselectable', 'on').css({
                    '-moz-user-select':'none',
                    '-webkit-user-select':'none',
@@ -208,7 +214,9 @@
                 autoPlay: false,
                 naviClass: 'navi',
                 autoNavi: false,
-                cycle: false
+                cycle: false,
+                resize: true,
+                resizeDelay: 300 // in ms
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;
