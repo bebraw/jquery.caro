@@ -24,6 +24,9 @@
         initTitles($slides, $navi, moveTemplate, opts.autoNavi);
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
+
+        if(opts.resize) $slideContainer.height($slides.eq(pos).height());
+
         update(pos);
         disableSelection($elem);
 
