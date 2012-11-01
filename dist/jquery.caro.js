@@ -1,4 +1,4 @@
-/*! caro.js - v0.6.2 - 2012-11-01
+/*! caro.js - v0.6.5 - 2012-11-01
 * http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
