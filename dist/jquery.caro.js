@@ -1,4 +1,4 @@
-/*! caro.js - v0.6.5 - 2012-11-01
+/*! caro.js - v0.6.5 - 2012-11-15
 * http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
@@ -13,10 +13,10 @@
     }
 
     function caroize($elem, opts, dir, axis) {
-        var $slideContainer = $elem.find('.slides');
+        var $slideContainer = $('.slides:first', $elem);
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $elem.find('.' + opts.naviClass);
+        var $navi = $('.' + opts.naviClass + ':last', $elem);
         var amount = $slides.length;
         var pos = 0;
 

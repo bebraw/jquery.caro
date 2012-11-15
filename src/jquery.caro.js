@@ -9,10 +9,10 @@
     }
 
     function caroize($elem, opts, dir, axis) {
-        var $slideContainer = $elem.find('.slides');
+        var $slideContainer = $('.slides:first', $elem);
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $elem.find('.' + opts.naviClass);
+        var $navi = $('.' + opts.naviClass + ':last', $elem);
         var amount = $slides.length;
         var pos = 0;
 
