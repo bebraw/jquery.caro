@@ -1,8 +1,7 @@
-/*! caro.js - v0.6.6 - 2012-11-15
+/*! caro.js - v0.6.6 - 2012-11-17
 * http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
-/* MIT (c) Juho Vepsalainen */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');

@@ -1,4 +1,3 @@
-/* MIT (c) Juho Vepsalainen */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');

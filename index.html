@@ -1,188 +1,192 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <meta name="description" content="Simple, scaleable carousel for jQuery.">
-    <meta name="author" content="Juho Vepsäläinen">
+<meta name="description" content="Simple, scaleable carousel for jQuery.">
+<meta name="author" content="Juho Vepsäläinen">
 
-    <title>caro.js by bebraw</title>
+<title>caro.js by bebraw</title>
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/pygment_trac.css">
-    <link rel="stylesheet" href="css/demo.css">
-    <script src="js/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/pygment_trac.css">
+<link rel="stylesheet" href="css/demo.css">
+<script src="js/scale.fix.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  <script src="dist/jquery.caro.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    $(function() {
-        $('#horizontalDemo').caro();
-        $('#verticalDemo').caro({delay:500, dir:'vertical'});
-        $("#photoDemo").caro({autoNavi: true, cycle: true});
-        $('.innerDemo').caro();
-    });
-  </script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="dist/jquery.caro.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    $('#horizontalDemo').caro();
+    $('#verticalDemo').caro({delay:500, dir:'vertical'});
+    $("#photoDemo").caro({autoNavi: true, cycle: true});
+    $('.innerDemo').caro();
+});
+</script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
         <h1>caro.js</h1>
         <p>Simple, scaleable for jQuery (MIT)</p>
         <p class="view"><a href="https://github.com/bebraw/caro.js">View the Project on GitHub <small>bebraw/caro.js</small></a></p>
         <ul>
-          <li><a href="https://github.com/bebraw/caro.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/bebraw/caro.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/bebraw/caro.js">View On <strong>GitHub</strong></a></li>
+            <li><a href="https://github.com/bebraw/caro.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+            <li><a href="https://github.com/bebraw/caro.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="https://github.com/bebraw/caro.js">View On <strong>GitHub</strong></a></li>
         </ul>
-      </header>
-      <section>
+    </header>
+    <section>
         <h1>caro.js - Simple, scaleable carousel for jQuery</h1>
 
-<p>caro.js makes it easy to implement carousels, presentations and such. It
-scales somewhat well and fits in a responsive layout. Examine the demos below
-to see how it works out.</p>
-      </section>
-      <section>
+        <p>caro.js makes it easy to implement carousels, presentations and such. It
+        scales somewhat well and fits in a responsive layout. Examine the demos below
+        to see how it works out.</p>
+    </section>
+    <section>
 
-    <h2>Horizontal Carousel</h2>
+        <h2>Horizontal Carousel</h2>
 
-    <div id="horizontalDemo" class="demo">
-        <div class="buttons">
-            <a href="#" class="first button">first</a>
-            <a href="#" class="prev button">left</a>
-            <a href="#" class="last button">last</a>
-            <a href="#" class="next button">right</a>
-        </div>
-        <div class="slides">
-            <div title="Cheeky Monkey">
-                <h3>Monkey</h3>
-
-                <p>Apparently these are cheeky. Not sure why.</p>
+        <div id="horizontalDemo" class="demo">
+            <div class="buttons">
+                <a href="#" class="first button">first</a>
+                <a href="#" class="prev button">left</a>
+                <a href="#" class="last button">last</a>
+                <a href="#" class="next button">right</a>
             </div>
-            <div title="Powerful Lion">
-                <h3>Lion</h3>
+            <div class="slides">
+                <div title="Cheeky Monkey">
+                    <h3>Monkey</h3>
 
-                <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
+                    <p>Apparently these are cheeky. Not sure why.</p>
+                </div>
+                <div title="Powerful Lion">
+                    <h3>Lion</h3>
+
+                    <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
                     known as the king of the jungle for some reason.</p>
-                <p>Lions are also famous for their hunting prowess. They prowl in packs and can often outwit game that is faster.</p>
-            </div>
-            <div title="Mighty Bear">
-                <h3>Bear</h3>
+                    <p>Lions are also famous for their hunting prowess. They prowl in packs and can often outwit game that is faster.</p>
+                </div>
+                <div title="Mighty Bear">
+                    <h3>Bear</h3>
 
-                <p>Usually brown, black or white. Try to avoid these if possible.</p>
-            </div>
-            <div title="Striped Zebra">
-                <h3>Zebra</h3>
+                    <p>Usually brown, black or white. Try to avoid these if possible.</p>
+                </div>
+                <div title="Striped Zebra">
+                    <h3>Zebra</h3>
 
-                <p>It has either white stripes on black or black on white. This is the subject of some really intense
+                    <p>It has either white stripes on black or black on white. This is the subject of some really intense
                     scientific debate.</p>
-            </div>
-            <div title="More Animals">
-                <div class="innerDemo demo">
-                <div class="slides">
-                    <div title="Baboon">
-                        <h3>Baboon</h3>
+                </div>
+                <div title="More Animals">
+                    <div class="innerDemo demo">
+                        <div class="slides">
+                            <div title="Baboon">
+                                <h3>Baboon</h3>
 
-                        <p>You know... a baboon.</p>
-                    </div>
-                    <div title="Orangutang">
-                        <h3>Orangutang</h3>
+                                <p>You know... a baboon.</p>
+                            </div>
+                            <div title="Orangutang">
+                                <h3>Orangutang</h3>
 
-                        <p>Not orange, orangutang. Although it has some orange.</p>
-                    </div>
-                    <div title="Even More Animals">
+                                <p>Not orange, orangutang. Although it has some orange.</p>
+                            </div>
+                            <div title="Even More Animals">
+                                <div class="innerDemo demo">
+                                    <div class="navi"></div>
+                                    <div class="slides">
+                                        <div title="Rat">
+                                            <h3>Rat</h3>
+
+                                            <p>Just some rat.</p>
+                                        </div>
+                                        <div title="Mouse">
+                                            <h3>Mouse</h3>
+
+                                            <p>Mouse...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="navi"></div>
-                        <div title="Rat">
-                            <h3>Rat</h3>
-
-                            <p>Just some rat.</p>
-                        </div>
-                        <div title="Mouse">
-                            <h3>Mouse</h3>
-
-                            <p>Mouse...</p>
-                        </div>
                     </div>
                 </div>
-                <div class="navi"></div>
+            </div>
+            <div class="navi"></div>
+        </div>
+
+        <h2>Vertical Carousel</h2>
+
+        <div id="verticalDemo" class="demo">
+            <div class="button"><a href="#" class="prev">up</a></div>
+            <div class="slides">
+                <div>
+                    <h3>Lion</h3>
+
+                    <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
+                    known as the king of the jungle for some reason.</p>
+                </div>
+                <div>
+                    <h3>Monkey</h3>
+
+                    <p>Apparently these are cheeky. Not sure why.</p>
+                </div>
+                <div>
+                    <h3>Bear</h3>
+
+                    <p>Usually brown, black or white. Try to avoid these if possible.</p>
+                </div>
+                <div>
+                    <h3>Zebra</h3>
+
+                    <p>It has either white stripes on black or black on white. This is the subject of some really intense
+                    scientific debate.</p>
                 </div>
             </div>
+            <div class="button"><a href="#" class="next">down</a></div>
         </div>
-        <div class="navi"></div>
-    </div>
 
-    <h2>Vertical Carousel</h2>
+        <h2>Photo Gallery</h2>
 
-    <div id="verticalDemo" class="demo">
-        <div class="button"><a href="#" class="prev">up</a></div>
-        <div class="slides">
-            <div>
-                <h3>Lion</h3>
-
-                <p>Lion is a sometimes furry animal with long tail and killer instinct. They roam the savannahs. Also
-                    known as the king of the jungle for some reason.</p>
+        <div id="photoDemo" class="demo">
+            <div class="controls">
+                <a href="#" class="prev button">previous</a>
+                <a href="#" class="play button">play</a>
+                <a href="#" class="stop button">stop</a>
+                <a href="#" class="next button">next</a>
             </div>
-            <div>
-                <h3>Monkey</h3>
-
-                <p>Apparently these are cheeky. Not sure why.</p>
+            <div class="slides">
+                <div>
+                    <img src="images/cow.jpg" title="Cow"/>
+                </div>
+                <div>
+                    <img src="images/grove.jpg" title="Grove"/>
+                </div>
+                <div>
+                    <img src="images/lake.jpg" title="Lake"/>
+                </div>
+                <div>
+                    <img src="images/sunset.jpg" title="Sunset"/>
+                </div>
+                <div>
+                    <img src="images/trientalis.jpg" title="Trientalis Europaea"/>
+                </div>
             </div>
-            <div>
-                <h3>Bear</h3>
-
-                <p>Usually brown, black or white. Try to avoid these if possible.</p>
-            </div>
-            <div>
-                <h3>Zebra</h3>
-
-                <p>It has either white stripes on black or black on white. This is the subject of some really intense
-                    scientific debate.</p>
-            </div>
+            <div class="navi"></div>
         </div>
-        <div class="button"><a href="#" class="next">down</a></div>
-    </div>
 
-    <h2>Photo Gallery</h2>
-
-    <div id="photoDemo" class="demo">
-        <div class="controls">
-            <a href="#" class="prev button">previous</a>
-            <a href="#" class="play button">play</a>
-            <a href="#" class="stop button">stop</a>
-            <a href="#" class="next button">next</a>
-        </div>
-        <div class="slides">
-            <div>
-                <img src="images/cow.jpg" title="Cow"/>
-            </div>
-            <div>
-                <img src="images/grove.jpg" title="Grove"/>
-            </div>
-            <div>
-                <img src="images/lake.jpg" title="Lake"/>
-            </div>
-            <div>
-                <img src="images/sunset.jpg" title="Sunset"/>
-            </div>
-            <div>
-                <img src="images/trientalis.jpg" title="Trientalis Europaea"/>
-            </div>
-        </div>
-        <div class="navi"></div>
-    </div>
-
-      </section>
-    </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/bebraw">bebraw</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-  </body>
+    </section>
+</div>
+<footer>
+    <p>Project maintained by <a href="https://github.com/bebraw">bebraw</a></p>
+    <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+</footer>
+<!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+</body>
 </html>
