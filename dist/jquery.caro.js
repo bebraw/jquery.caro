@@ -1,4 +1,4 @@
-/*! caro.js - v0.6.6 - 2012-11-17
+/*! caro.js - v0.6.6 - 2012-11-18
 * http://bebraw.github.com/caro.js/
 * Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
 
@@ -24,7 +24,9 @@
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
-        if(opts.resize) $slideContainer.height($slides.eq(pos).height());
+        if(opts.resize) {
+            $slideContainer.height($slides.eq(pos).height());
+        }
 
         update(pos);
         disableSelection($elem);
@@ -53,8 +55,11 @@
 
             if(opts.resize) {
                 $slideContainer.animate({
-                    'height': $slides.eq(pos).height()
-                }, opts.resizeDelay);
+                    'height': $slides.eq(i).height()
+                }, opts.resizeDelay, function() {
+                    $elem.parents('.slides').siblings('.navi').
+                        find('.selected.button:first').trigger('click');
+                });
             }
         }
     }

@@ -20,7 +20,9 @@
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
-        if(opts.resize) $slideContainer.height($slides.eq(pos).height());
+        if(opts.resize) {
+            $slideContainer.height($slides.eq(pos).height());
+        }
 
         update(pos);
         disableSelection($elem);
@@ -49,8 +51,11 @@
 
             if(opts.resize) {
                 $slideContainer.animate({
-                    'height': $slides.eq(pos).height()
-                }, opts.resizeDelay);
+                    'height': $slides.eq(i).height()
+                }, opts.resizeDelay, function() {
+                    $elem.parents('.slides').siblings('.navi').
+                        find('.selected.button:first').trigger('click');
+                });
             }
         }
     }
