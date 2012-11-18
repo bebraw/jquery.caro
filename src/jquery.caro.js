@@ -21,7 +21,7 @@
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
         if(opts.resize) {
-            $slideContainer.height($slides.eq(pos).height());
+            $slideContainer.height($slides.eq(pos).height() || undefined);
         }
 
         update(pos);
@@ -51,7 +51,7 @@
 
             if(opts.resize) {
                 $slideContainer.animate({
-                    'height': $slides.eq(i).height()
+                    'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
                     $elem.parents('.slides').siblings('.navi').
                         find('.selected.button:first').trigger('click');
