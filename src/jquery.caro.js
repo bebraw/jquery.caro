@@ -16,7 +16,7 @@
         var pos = 0;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
-        initTitles($slides, $navi, moveTemplate, opts.autoNavi);
+        initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.buttonClass);
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
@@ -24,7 +24,7 @@
             $slideContainer.height($slides.eq(pos).height() || undefined);
         }
 
-        update(pos);
+        update(pos, opts.buttonClass);
         disableSelection($elem);
 
         function moveTemplate(indexCb, animCb) {
@@ -40,12 +40,12 @@
                 animProps[dir] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
-                update(pos);
+                update(pos, opts.buttonClass);
             };
         }
 
-        function update(i) {
-            updateNavi($navi, i);
+        function update(i, buttonClass) {
+            updateNavi($navi, i, buttonClass);
             if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
 
@@ -54,7 +54,7 @@
                     'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
                     $elem.parents('.slides').siblings('.navi').
-                        find('.selected.button:first').trigger('click');
+                        find('.selected.' + buttonClass + ':first').trigger('click');
                 });
             }
         }
@@ -93,7 +93,7 @@
         });
     }
 
-    function initTitles($slides, $navi, move, autoNavi) {
+    function initTitles($slides, $navi, move, autoNavi, buttonClass) {
         $slides.each(function (i, k) {
             var $e = $('<a>', {href: '#'}).css('display', 'inline').bind('click',
                 function(e) {
@@ -102,7 +102,7 @@
                     move(function () {
                         return i;
                     })();
-                }).appendTo($navi).addClass('title button');
+                }).appendTo($navi).addClass('title ' + buttonClass);
 
             if(autoNavi) {
                 $(k).clone().appendTo($e);
@@ -158,8 +158,8 @@
         });
     }
 
-    function updateNavi($navi, i) {
-        var $titles = $navi.find('.title.button');
+    function updateNavi($navi, i, buttonClass) {
+        var $titles = $navi.find('.title.' + buttonClass);
 
         $titles.removeClass('selected');
         $titles.eq(i).addClass('selected');
@@ -216,6 +216,7 @@
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
                 naviClass: 'navi',
+                buttonClass: 'button',
                 autoNavi: false,
                 cycle: false,
                 resize: true,
