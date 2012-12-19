@@ -20,12 +20,14 @@
         initNavi($elem, $wrapper, moveTemplate);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
-        if(opts.resize) {
-            $slideContainer.height($slides.eq(pos).height() || undefined);
-        }
+        if(opts.resize) updateHeight($slideContainer, $slides, pos);
 
         update(pos, opts.buttonClass);
         disableSelection($elem);
+
+        $(window).resize(function() {
+            updateHeight($slideContainer, $slides, pos);
+        });
 
         function moveTemplate(indexCb, animCb) {
             return function() {
@@ -58,6 +60,10 @@
                 });
             }
         }
+    }
+
+    function updateHeight($slideContainer, $slides, pos) {
+        $slideContainer.height($slides.eq(pos).height() || undefined);
     }
 
     function clamp(i, min, max) {
