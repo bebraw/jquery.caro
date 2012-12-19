@@ -81,3 +81,8 @@
 #photoDemo .navi .title img {
     width: 50px;
 }
+
+#photoDemo .slides img, #photoDemo .selected img {
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
