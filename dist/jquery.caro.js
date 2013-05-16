@@ -1,4 +1,4 @@
-/*! jquery.caro - v0.7.3 - Juho Vepsalainen - MIT
+/*! jquery.caro - v0.7.4 - Juho Vepsalainen - MIT
 https://github.com/bebraw/caro.js - 2013-05-16 */
 (function ($) {
     function horizontalCaro($elem, opts) {
