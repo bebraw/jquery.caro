@@ -1,7 +1,5 @@
-/*! caro.js - v0.7.3 - 2012-12-19
-* http://bebraw.github.com/caro.js/
-* Copyright (c) 2012 Juho Vepsalainen; Licensed MIT */
-
+/*! jquery.caro - v0.7.3 - Juho Vepsalainen - MIT
+https://github.com/bebraw/caro.js - 2013-05-16 */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');
@@ -188,7 +186,7 @@
 
     function updateSlides($slides, i) {
         $slides.each(function (j, e) {
-            $(e).removeClass('prev').removeClass('next');
+            $(e).removeClass('prev current next');
 
             if(j == i - 1) {
                 $(e).addClass('prev');

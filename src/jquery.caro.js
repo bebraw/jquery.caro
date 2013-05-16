@@ -184,7 +184,7 @@
 
     function updateSlides($slides, i) {
         $slides.each(function (j, e) {
-            $(e).removeClass('prev').removeClass('next');
+            $(e).removeClass('prev current next');
 
             if(j == i - 1) {
                 $(e).addClass('prev');
