@@ -90,11 +90,14 @@ https://github.com/bebraw/caro.js - 2013-05-16 */
 
         // opera hack! opera rounds width so we need to deal with that using some
         // padding
+        var half = ((len - parseInt(len, 10)) / 2) + '%';
         if(axis == 'width') {
-            slideOpts['padding-right'] = len - parseInt(len, 10) + '%';
+            slideOpts['margin-left'] = half;
+            slideOpts['margin-right'] = half;
         }
         else {
-            slideOpts['padding-bottom'] = len - parseInt(len, 10) + '%';
+            slideOpts['margin-top'] = half;
+            slideOpts['margin-bottom'] = half;
         }
         $slides.each(function (i, e) {
             $(e).css(slideOpts).addClass('slide');
