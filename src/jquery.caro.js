@@ -43,6 +43,8 @@
                 $wrapper.animate(animProps, opts.delay, animCb);
 
                 update(pos, opts.buttonClass);
+
+                $elem.trigger('updateSlide', [pos]);
             };
         }
 
@@ -132,16 +134,32 @@
         }
 
         bind('.prev', function (a) {
-            return a - 1;
+            var ret = a - 1;
+
+            $elem.trigger('previousSlide', [ret]);
+
+            return ret;
         });
         bind('.next', function (a) {
-            return a + 1;
+            var ret = a + 1;
+
+            $elem.trigger('nextSlide', [ret]);
+
+            return ret;
         });
         bind('.first', function () {
-            return 0;
+            var ret = 0;
+
+            $elem.trigger('firstSlide', [ret]);
+
+            return ret;
         });
         bind('.last', function (a, len) {
-            return len;
+            var ret = len;
+
+            $elem.trigger('lastSlide', [ret]);
+
+            return ret;
         });
     }
 
