@@ -1,5 +1,5 @@
 /*! jquery.caro - v0.7.6 - Juho Vepsalainen - MIT
-https://github.com/bebraw/caro.js - 2013-05-17 */
+https://github.com/bebraw/caro.js - 2013-05-27 */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');
@@ -13,18 +13,18 @@ https://github.com/bebraw/caro.js - 2013-05-17 */
         var $slideContainer = $('.slides:first', $elem);
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $('.' + opts.naviClass + ':last', $elem);
+        var $navi = $('.' + opts.classes.navi + ':last', $elem);
         var amount = $slides.length;
         var pos = 0;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
-        initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.buttonClass);
-        initNavi($elem, $wrapper, moveTemplate);
+        initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.classes.button);
+        initNavi($elem, $wrapper, moveTemplate, opts.classes);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
         if(opts.resize) updateHeight($slideContainer, $slides, pos);
 
-        update(pos, opts.buttonClass);
+        update(pos, opts.classes.button);
         disableSelection($elem);
 
         $(window).resize(function() {
@@ -44,7 +44,7 @@ https://github.com/bebraw/caro.js - 2013-05-17 */
                 animProps[dir] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
-                update(pos, opts.buttonClass);
+                update(pos, opts.classes.button);
 
                 $elem.trigger('updateSlide', [pos]);
             };
@@ -126,7 +126,7 @@ https://github.com/bebraw/caro.js - 2013-05-17 */
         });
     }
 
-    function initNavi($elem, $wrapper, move) {
+    function initNavi($elem, $wrapper, move, classes) {
         function bind(sel, cb) {
             $elem.find(sel).bind('click', function (e) {
                 e.preventDefault();
@@ -135,28 +135,28 @@ https://github.com/bebraw/caro.js - 2013-05-17 */
             });
         }
 
-        bind('.prev', function (a) {
+        bind('.' + classes.prev, function (a) {
             var ret = a - 1;
 
             $elem.trigger('previousSlide', [ret]);
 
             return ret;
         });
-        bind('.next', function (a) {
+        bind('.' + classes.next, function (a) {
             var ret = a + 1;
 
             $elem.trigger('nextSlide', [ret]);
 
             return ret;
         });
-        bind('.first', function () {
+        bind('.' + classes.first, function () {
             var ret = 0;
 
             $elem.trigger('firstSlide', [ret]);
 
             return ret;
         });
-        bind('.last', function (a, len) {
+        bind('.' + classes.last, function (a, len) {
             var ret = len;
 
             $elem.trigger('lastSlide', [ret]);
@@ -239,13 +239,19 @@ https://github.com/bebraw/caro.js - 2013-05-17 */
     $.fn.caro = function (options) {
         return this.each(function () {
             var $elem = $(this);
-            var opts = $.extend({
+            var opts = $.extend(true, {
                 dir: 'horizontal', // either 'horizontal' or 'vertical'
                 delay: 300, // in ms
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
-                naviClass: 'navi',
-                buttonClass: 'button',
+                classes: {
+                    button: 'button',
+                    navi: 'navi',
+                    prev: 'prev',
+                    next: 'next',
+                    first: 'first',
+                    last: 'last'
+                },
                 autoNavi: false,
                 cycle: false,
                 resize: true,
