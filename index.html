@@ -22,7 +22,7 @@
 <script src="dist/jquery.caro.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
-    var $e = $('#horizontalDemo').caro({cycle: true});
+    var $e = $('#horizontalDemo').caro({cycle: true, initialSlide: 2});
 
     $e.on('updateSlide', function(e, slideIndex) {
         console.log('horizontalDemo - updateSlide triggered. Current slide:', slideIndex);

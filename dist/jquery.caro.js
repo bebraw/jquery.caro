@@ -1,5 +1,5 @@
 /*! jquery.caro - v0.7.7 - Juho Vepsalainen - MIT
-https://github.com/bebraw/caro.js - 2013-05-27 */
+https://github.com/bebraw/caro.js - 2013-06-03 */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');
@@ -15,7 +15,7 @@ https://github.com/bebraw/caro.js - 2013-05-27 */
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
         var $navi = $('.' + opts.classes.navi + ':last', $elem);
         var amount = $slides.length;
-        var pos = 0;
+        var pos = opts.initialSlide;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
         initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.classes.button);
@@ -255,7 +255,8 @@ https://github.com/bebraw/caro.js - 2013-05-27 */
                 autoNavi: false,
                 cycle: false,
                 resize: true,
-                resizeDelay: 300 // in ms
+                resizeDelay: 300, // in ms
+                initialSlide: 0
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;

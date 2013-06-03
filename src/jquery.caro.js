@@ -13,7 +13,7 @@
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
         var $navi = $('.' + opts.classes.navi + ':last', $elem);
         var amount = $slides.length;
-        var pos = 0;
+        var pos = opts.initialSlide;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
         initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.classes.button);
@@ -253,7 +253,8 @@
                 autoNavi: false,
                 cycle: false,
                 resize: true,
-                resizeDelay: 300 // in ms
+                resizeDelay: 300, // in ms
+                initialSlide: 0
             }, options);
 
             var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;
