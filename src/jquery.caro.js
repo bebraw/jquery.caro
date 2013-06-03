@@ -22,12 +22,18 @@
 
         if(opts.resize) updateHeight($slideContainer, $slides, pos);
 
-        update(pos, opts.classes.button);
         disableSelection($elem);
 
         $(window).resize(function() {
             updateHeight($slideContainer, $slides, pos);
         });
+
+        if(pos) {
+            $wrapper.css(dir, (pos * -100) + '%');
+            $slideContainer.css('height', $slides.eq(pos).height());
+        }
+
+        update(pos, opts.classes.button);
 
         function moveTemplate(indexCb, animCb) {
             return function() {
@@ -43,6 +49,7 @@
                 $wrapper.animate(animProps, opts.delay, animCb);
 
                 update(pos, opts.classes.button);
+                updateHeight(pos, opts.classes.button);
 
                 $elem.trigger('updateSlide', [pos]);
             };
@@ -52,7 +59,12 @@
             updateNavi($navi, i, buttonClass);
             if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
+        }
 
+        function updateHeight(i, buttonClass) {
+            $slideContainer.css('height', $slides.eq(i).height());
+
+            // TODO: figure out why this doesn't animate
             if(opts.resize) {
                 $slideContainer.animate({
                     'height': $slides.eq(i).height() || undefined
@@ -204,19 +216,21 @@
     }
 
     function updateSlides($slides, i) {
-        $slides.each(function (j, e) {
-            $(e).removeClass('prev current next');
+        $slides.each(function(j, e) {
+            var $e = $(e);
+
+            $e.removeClass('prev current next');
 
             if(j == i - 1) {
-                $(e).addClass('prev');
+                $e.addClass('prev');
             }
 
             if(j == i) {
-                $(e).addClass('current');
+                $e.addClass('current');
             }
 
             if(j == i + 1) {
-                $(e).addClass('next');
+                $e.addClass('next');
             }
         });
     }
