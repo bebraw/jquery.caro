@@ -140,8 +140,13 @@
         function bind(sel, cb) {
             $elem.find(sel).bind('click', function (e) {
                 e.preventDefault();
+
                 $wrapper.clearQueue();
-                move(cb)();
+                move(function(a, len) {
+                    var val = $elem.triggerHandler('beforeSlide', [a]);
+
+                    if(!isDefined(val) || val) return cb(a, len);
+                })();
             });
         }
 
@@ -173,6 +178,10 @@
 
             return ret;
         });
+    }
+
+    function isDefined(a) {
+        return typeof a !== 'undefined';
     }
 
     function initPlayback($elem, $wrapper, move, autoPlay, still) {
