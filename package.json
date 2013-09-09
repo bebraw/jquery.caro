@@ -1,17 +1,17 @@
 {
-    "name": "jquery.caro",
-    "author": "Juho Vepsalainen",
-    "version": "0.7.9",
-    "license": "MIT",
-    "homepage": "https://github.com/bebraw/caro.js",
-    "private": true,
-    "devDependencies": {
-        "grunt": "== 0.4.1",
-        "grunt-jekyll": "== 0.2.2",
-        "grunt-contrib-concat": "== 0.1.3",
-        "grunt-contrib-watch": "== 0.3.1",
-        "grunt-contrib-connect": "== 0.1.2",
-        "grunt-contrib-livereload": "== 0.1.2",
-        "grunt-contrib-uglify": "== 0.1.2"
-    }
+  "name": "jquery.caro",
+  "author": "Juho Vepsalainen",
+  "version": "0.7.9",
+  "license": "MIT",
+  "homepage": "https://github.com/bebraw/caro.js",
+  "private": true,
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-jekyll": "0.3.9",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-contrib-connect": "0.5.0",
+    "grunt-contrib-livereload": "0.1.2",
+    "grunt-contrib-uglify": "0.2.4"
+  }
 }
