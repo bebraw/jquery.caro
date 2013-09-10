@@ -1,7 +1,7 @@
 {
   "name": "caro.js",
   "author": "Juho Vepsalainen",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "license": "MIT",
   "homepage": "https://github.com/bebraw/caro.js",
   "devDependencies": {
