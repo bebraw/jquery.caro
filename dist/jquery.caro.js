@@ -1,5 +1,5 @@
-/*! jquery.caro - v0.7.9 - Juho Vepsalainen - MIT
-https://github.com/bebraw/caro.js - 2013-09-09 */
+/*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
+https://github.com/bebraw/jquery.caro - 2013-09-10 */
 (function ($) {
     function horizontalCaro($elem, opts) {
         caroize($elem, opts, 'left', 'width');
