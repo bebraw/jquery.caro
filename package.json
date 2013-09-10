@@ -1,9 +1,9 @@
 {
-  "name": "caro.js",
+  "name": "jquery.caro",
   "author": "Juho Vepsalainen",
   "version": "0.8.1",
   "license": "MIT",
-  "homepage": "https://github.com/bebraw/caro.js",
+  "homepage": "https://github.com/bebraw/jquery.caro",
   "devDependencies": {
     "grunt": "0.4.1",
     "grunt-jekyll": "0.3.9",

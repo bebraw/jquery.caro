@@ -1,4 +1,4 @@
-# caro.js - Simple, scaleable carousel for jQuery
+# jquery.caro - Simple, scaleable carousel for jQuery
 
 Why we need yet another carousel plugin? Simply because I couldn't find one that fits my purposes. As a result caro.js was born. It does one thing better than the others, it scales according to your layout.
 
