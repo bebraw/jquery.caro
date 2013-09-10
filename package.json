@@ -4,7 +4,6 @@
   "version": "0.8.0",
   "license": "MIT",
   "homepage": "https://github.com/bebraw/caro.js",
-  "private": true,
   "devDependencies": {
     "grunt": "0.4.1",
     "grunt-jekyll": "0.3.9",
