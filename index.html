@@ -20,25 +20,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="dist/jquery.caro.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function() {
-    var $e = $('#horizontalDemo').caro({cycle: true, initialSlide: 2});
-
-    $e.on('beforeSlide', function(e, slideIndex) {
-        console.log('horizontalDemo - beforeSlide triggered. Current slide:', slideIndex);
-
-        // in case this is set to false, it won't proceed
-        return true;
-    });
-    $e.on('updateSlide', function(e, slideIndex) {
-        console.log('horizontalDemo - updateSlide triggered. Current slide:', slideIndex);
-    });
-
-    $('#verticalDemo').caro({delay:500, dir:'vertical'});
-    $("#photoDemo").caro({autoNavi: true, cycle: true});
-    $('.innerDemo').caro();
-});
-</script>
+<script src="js/demo.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="wrapper">
