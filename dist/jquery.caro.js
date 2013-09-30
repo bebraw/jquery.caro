@@ -1,4 +1,6 @@
 /*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
+https://github.com/bebraw/jquery.caro - 2013-09-30 */
+/*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2013-09-10 */
 (function ($) {
     function horizontalCaro($elem, opts) {
@@ -140,40 +142,49 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
 
     function initNavi($elem, $wrapper, move, classes) {
         function bind(sel, cb) {
-            $elem.find(sel).bind('click', function (e) {
-                e.preventDefault();
+            $('[data-caro="' + sel + '"]').bind('click', fn);
+            $elem.find('.' + sel).bind('click', preventDefault(fn));
 
+            function preventDefault(f) {
+                return function(e) {
+                    e.preventDefault();
+
+                    f(e);
+                };
+            }
+
+            function fn(e) {
                 $wrapper.clearQueue();
                 move(function(a, len) {
                     var val = $elem.triggerHandler('beforeSlide', [a]);
 
                     if(!isDefined(val) || val) return cb(a, len);
                 })();
-            });
+            }
         }
 
-        bind('.' + classes.prev, function (a) {
+        bind(classes.prev, function (a) {
             var ret = a - 1;
 
             $elem.trigger('previousSlide', [ret]);
 
             return ret;
         });
-        bind('.' + classes.next, function (a) {
+        bind(classes.next, function (a) {
             var ret = a + 1;
 
             $elem.trigger('nextSlide', [ret]);
 
             return ret;
         });
-        bind('.' + classes.first, function () {
+        bind(classes.first, function () {
             var ret = 0;
 
             $elem.trigger('firstSlide', [ret]);
 
             return ret;
         });
-        bind('.' + classes.last, function (a, len) {
+        bind(classes.last, function (a, len) {
             var ret = len;
 
             $elem.trigger('lastSlide', [ret]);
