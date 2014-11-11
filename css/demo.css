@@ -51,6 +51,10 @@
     background: white;
 }
 
+#verticalDemo .amounts {
+    float: right;
+}
+
 #verticalDemo .slides {
     height: 100px; /* important!!! remember to set this */
     margin: 1em;

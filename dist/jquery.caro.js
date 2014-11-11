@@ -1,5 +1,5 @@
 /*! jquery.caro - v0.9.1 - Juho Vepsalainen - MIT
-https://github.com/bebraw/jquery.caro - 2014-11-05 */
+https://github.com/bebraw/jquery.caro - 2014-11-11 */
 /*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2013-09-10 */
 (function ($) {
@@ -37,7 +37,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
             $slideContainer.css('height', $slides.eq(pos).height());
         }
 
-        update(pos, opts.classes.button);
+        update(pos, opts.classes);
 
         function moveTemplate(indexCb, animCb) {
             return function() {
@@ -52,17 +52,20 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 animProps[dir] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
-                update(pos, opts.classes.button);
+                update(pos, opts.classes);
                 updateHeight(pos, opts.classes.button);
 
                 $elem.trigger('updateSlide', [pos]);
             };
         }
 
-        function update(i, buttonClass) {
-            updateNavi($navi, i, buttonClass);
+        function update(i, classes) {
+            updateNavi($navi, i, classes.button);
             if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
+
+            $elem.find('.' + classes.currentAmount).text(pos + 1);
+            $elem.find('.' + classes.totalAmount).text(amount);
         }
 
         function updateHeight(i, buttonClass) {
@@ -158,7 +161,9 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 move(function(a, len) {
                     var val = $elem.triggerHandler('beforeSlide', [a]);
 
-                    if(!isDefined(val) || val) return cb(a, len);
+                    if(!isDefined(val) || val) {
+                        return cb(a, len);
+                    }
                 })();
             }
         }
@@ -284,7 +289,9 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                     prev: 'prev',
                     next: 'next',
                     first: 'first',
-                    last: 'last'
+                    last: 'last',
+                    currentAmount: 'currentAmount',
+                    totalAmount: 'totalAmount'
                 },
                 autoNavi: false,
                 cycle: false,
