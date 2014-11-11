@@ -26,7 +26,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
             updateHeight(pos, opts.classes);
         }
 
-        disableSelection($elem);
+        disableSelection($elem.children().not('.' + opts.classes.slides));
 
         $(window).resize(function() {
             updateHeight(pos, opts.classes);
