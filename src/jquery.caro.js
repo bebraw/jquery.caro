@@ -10,7 +10,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
     }
 
     function caroize($elem, opts, dir, axis) {
-        var $slideContainer = $('.slides:first', $elem);
+        var $slideContainer = $('.' + opts.classes.slides + ':first', $elem);
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
         var $navi = $('.' + opts.classes.navi + ':last', $elem);
@@ -22,12 +22,14 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         initNavi($elem, $wrapper, moveTemplate, opts.classes);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
-        if(opts.resize) updateHeight($slideContainer, $slides, pos);
+        if(opts.resize) {
+            updateHeight(pos, opts.classes);
+        }
 
         disableSelection($elem);
 
         $(window).resize(function() {
-            updateHeight($slideContainer, $slides, pos);
+            updateHeight(pos, opts.classes);
         });
 
         if(pos) {
@@ -51,7 +53,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 $wrapper.animate(animProps, opts.delay, animCb);
 
                 update(pos, opts.classes);
-                updateHeight(pos, opts.classes.button);
+                updateHeight(pos, opts.classes);
 
                 $elem.trigger('updateSlide', [pos]);
             };
@@ -59,14 +61,18 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
 
         function update(i, classes) {
             updateNavi($navi, i, classes.button);
-            if(!opts.cycle) updateButtons($elem, i, amount);
+
+            if(!opts.cycle) {
+                updateButtons($elem, i, amount);
+            }
+
             updateSlides($slides, i);
 
             $elem.find('.' + classes.currentAmount).text(pos + 1);
             $elem.find('.' + classes.totalAmount).text(amount);
         }
 
-        function updateHeight(i, buttonClass) {
+        function updateHeight(i, classes) {
             $slideContainer.css('height', $slides.eq(i).height());
 
             // TODO: figure out why this doesn't animate
@@ -74,15 +80,11 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 $slideContainer.animate({
                     'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
-                    $elem.parents('.slides').siblings('.navi').
-                        find('.selected.' + buttonClass + ':first').trigger('click');
+                    $elem.parents('.' + classes.slides).siblings('.navi').
+                        find('.selected.' + classes.button + ':first').trigger('click');
                 });
             }
         }
-    }
-
-    function updateHeight($slideContainer, $slides, pos) {
-        $slideContainer.height($slides.eq(pos).height() || undefined);
     }
 
     function clamp(i, min, max) {
@@ -282,6 +284,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
                 classes: {
+                    slides: 'slides',
                     button: 'button',
                     navi: 'navi',
                     prev: 'prev',
