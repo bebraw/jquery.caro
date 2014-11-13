@@ -13,7 +13,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         var $slideContainer = $elem.find('.' + opts.classes.slides).first();
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $elem.find('.' + opts.classes.navi).last();
+        var $navi = $elem.children('.' + opts.classes.navi).last();
         var amount = $slides.length;
         var pos = opts.initialSlide;
 
