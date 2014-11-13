@@ -12,6 +12,6 @@ $(function() {
     });
 
     $('#verticalDemo').caro({delay:500, dir:'vertical'});
-    $("#photoDemo").caro({autoNavi: true, cycle: true});
+    $("#photoDemo").caro({autoNavigation: true, cycle: true});
     $('.innerDemo').caro();
 });

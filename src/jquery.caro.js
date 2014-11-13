@@ -13,13 +13,13 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         var $slideContainer = $('.slides:first', $elem);
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $('.' + opts.classes.navi + ':last', $elem);
+        var $navigation = $('.' + opts.classes.navigation + ':last', $elem);
         var amount = $slides.length;
         var pos = opts.initialSlide;
 
         initCSS($slideContainer, axis, $wrapper, dir, $slides);
-        initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.classes.button);
-        initNavi($elem, $wrapper, moveTemplate, opts.classes);
+        initTitles($slides, $navigation, moveTemplate, opts.autoNavigation, opts.classes.button);
+        initNavigation($elem, $wrapper, moveTemplate, opts.classes);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
         if(opts.resize) updateHeight($slideContainer, $slides, pos);
@@ -58,7 +58,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         }
 
         function update(i, buttonClass) {
-            updateNavi($navi, i, buttonClass);
+            updateNavigation($navigation, i, buttonClass);
             if(!opts.cycle) updateButtons($elem, i, amount);
             updateSlides($slides, i);
         }
@@ -71,7 +71,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 $slideContainer.animate({
                     'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
-                    $elem.parents('.slides').siblings('.navi').
+                    $elem.parents('.slides').siblings('.navigation').
                         find('.selected.' + buttonClass + ':first').trigger('click');
                 });
             }
@@ -118,7 +118,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         });
     }
 
-    function initTitles($slides, $navi, move, autoNavi, buttonClass) {
+    function initTitles($slides, $navigation, move, autoNavigation, buttonClass) {
         $slides.each(function (i, k) {
             var $e = $('<a>', {href: '#'}).css('display', 'inline').bind('click',
                 function(e) {
@@ -127,9 +127,9 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                     move(function () {
                         return i;
                     })();
-                }).appendTo($navi).addClass('title ' + buttonClass);
+                }).appendTo($navigation).addClass('title ' + buttonClass);
 
-            if(autoNavi) {
+            if(autoNavigation) {
                 $(k).clone().appendTo($e);
             }
             else {
@@ -138,7 +138,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         });
     }
 
-    function initNavi($elem, $wrapper, move, classes) {
+    function initNavigation($elem, $wrapper, move, classes) {
         function bind(sel, cb) {
             $('[data-caro="' + sel + '"]').bind('click', fn);
             $elem.find('.' + sel).bind('click', preventDefault(fn));
@@ -161,7 +161,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
             }
         }
 
-        bind(classes.prev, function (a) {
+        bind(classes.previous, function (a) {
             var ret = a - 1;
 
             $elem.trigger('previousSlide', [ret]);
@@ -217,15 +217,15 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         });
     }
 
-    function updateNavi($navi, i, buttonClass) {
-        var $titles = $navi.find('.title.' + buttonClass);
+    function updateNavigation($navigation, i, buttonClass) {
+        var $titles = $navigation.find('.title.' + buttonClass);
 
         $titles.removeClass('selected');
         $titles.eq(i).addClass('selected');
     }
 
     function updateButtons($elem, i, amount) {
-        var $begin = $elem.find('.first,.prev');
+        var $begin = $elem.find('.first,.previous');
         var $end = $elem.find('.last,.next');
 
         if(i === 0) $begin.addClass('disabled');
@@ -239,10 +239,10 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
         $slides.each(function(j, e) {
             var $e = $(e);
 
-            $e.removeClass('prev current next');
+            $e.removeClass('previous current next');
 
             if(j == i - 1) {
-                $e.addClass('prev');
+                $e.addClass('previous');
             }
 
             if(j == i) {
@@ -278,13 +278,13 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                 autoPlay: false,
                 classes: {
                     button: 'button',
-                    navi: 'navi',
-                    prev: 'prev',
+                    navigation: 'navigation',
+                    previous: 'previous',
                     next: 'next',
                     first: 'first',
                     last: 'last'
                 },
-                autoNavi: false,
+                autoNavigation: false,
                 cycle: false,
                 resize: true,
                 resizeDelay: 300, // in ms
