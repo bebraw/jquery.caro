@@ -1,4 +1,4 @@
-/*! jquery.caro - v0.9.2 - Juho Vepsalainen - MIT
+/*! jquery.caro - v0.9.3 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2014-11-13 */
 /*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2013-09-10 */
