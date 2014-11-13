@@ -1,5 +1,5 @@
 /*! jquery.caro - v0.9.2 - Juho Vepsalainen - MIT
-https://github.com/bebraw/jquery.caro - 2014-11-11 */
+https://github.com/bebraw/jquery.caro - 2014-11-13 */
 /*! jquery.caro - v0.8.2 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2013-09-10 */
 (function ($) {
@@ -12,10 +12,10 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
     }
 
     function caroize($elem, opts, dir, axis) {
-        var $slideContainer = $('.' + opts.classes.slides + ':first', $elem);
+        var $slideContainer = $elem.find('.' + opts.classes.slides).first();
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $('.' + opts.classes.navi + ':last', $elem);
+        var $navi = $elem.find('.' + opts.classes.navi).last();
         var amount = $slides.length;
         var pos = opts.initialSlide;
 
@@ -83,7 +83,7 @@ https://github.com/bebraw/jquery.caro - 2013-09-10 */
                     'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
                     $elem.parents('.' + classes.slides).siblings('.navi').
-                        find('.selected.' + classes.button + ':first').trigger('click');
+                        find('.selected.' + classes.button).first().trigger('click');
                 });
             }
         }
