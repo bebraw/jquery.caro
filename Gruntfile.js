@@ -52,7 +52,6 @@ module.exports = function(grunt) {
             dev: {
                 src: '.',
                 dest: '_site',
-                pygments: true,
                 safe: true
             }
         },
