@@ -53,7 +53,7 @@
             updateNavigation($navigation, i, classes.button);
 
             if(!opts.cycle) {
-                updateButtons($elem, i, amount);
+                updateButtons($elem, i, amount, classes);
             }
 
             updateSlides($slides, i);
@@ -221,15 +221,23 @@
         $titles.eq(i).addClass('selected');
     }
 
-    function updateButtons($elem, i, amount) {
-        var $begin = $elem.find('.first, .previous');
-        var $end = $elem.find('.last, .next');
+    function updateButtons($elem, i, amount, classes) {
+        var $begin = $elem.find('.' + classes.first + ', .' + classes.previous);
+        var $end = $elem.find('.' + classes.last + ', .' + classes.next);
 
-        if(i === 0) $begin.addClass('disabled');
-        else $begin.removeClass('disabled');
+        if(i === 0) {
+            $begin.addClass('disabled');
+        }
+        else {
+            $begin.removeClass('disabled');
+        }
 
-        if(i == amount - 1) $end.addClass('disabled');
-        else $end.removeClass('disabled');
+        if(i == amount - 1) {
+            $end.addClass('disabled');
+        }
+        else {
+            $end.removeClass('disabled');
+        }
     }
 
     function updateSlides($slides, i) {
