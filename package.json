@@ -1,7 +1,7 @@
 {
   "name": "jquery.caro",
   "author": "Juho Vepsalainen",
-  "version": "0.9.3",
+  "version": "1.0.0",
   "license": "MIT",
   "homepage": "https://github.com/bebraw/jquery.caro",
   "devDependencies": {

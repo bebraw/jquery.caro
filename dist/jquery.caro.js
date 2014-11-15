@@ -1,4 +1,4 @@
-/*! jquery.caro - v0.9.3 - Juho Vepsalainen - MIT
+/*! jquery.caro - v1.0.0 - Juho Vepsalainen - MIT
 https://github.com/bebraw/jquery.caro - 2014-11-15 */
 (function ($) {
     function caroize($elem, opts, direction, axis) {
