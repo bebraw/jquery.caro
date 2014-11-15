@@ -16,7 +16,7 @@ Why we need yet another carousel plugin? Simply because I couldn't find one that
 <div class="carouselDemo">
     <div class="buttons">
         <a href="#" class="first button">first</a>
-        <a href="#" class="prev button">left</a>
+        <a href="#" class="previous button">left</a>
         <a href="#" class="last button">last</a>
         <a href="#" class="next button">right</a>
     </div>
@@ -37,7 +37,7 @@ Why we need yet another carousel plugin? Simply because I couldn't find one that
             <img src="images/trientalis.jpg" title="Trientalis Europaea"/>
         </div>
     </div>
-    <div class="navi"></div>
+    <div class="navigation"></div>
 </div>
 ```
 

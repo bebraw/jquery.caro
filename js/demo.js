@@ -11,7 +11,14 @@ $(function() {
         console.log('horizontalDemo - updateSlide triggered. Current slide:', slideIndex);
     });
 
-    $('#verticalDemo').caro({delay:500, dir:'vertical'});
-    $("#photoDemo").caro({autoNavi: true, cycle: true});
+    $('#verticalDemo').caro({
+        delay: 500,
+        direction: 'vertical'
+    });
+
+    $("#photoDemo").caro({
+        autoNavigation: true,
+        cycle: true
+    });
     $('.innerDemo').caro();
 });

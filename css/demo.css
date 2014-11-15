@@ -25,7 +25,7 @@
     float: left;
 }
 
-#horizontalDemo .prev.button {
+#horizontalDemo .previous.button {
     float: left;
     margin-left: 2em;
 }
@@ -39,11 +39,11 @@
     margin-right: 2em;
 }
 
-#horizontalDemo .navi {
+#horizontalDemo .navigation {
     text-align: center;
 }
 
-#horizontalDemo .navi .button {
+#horizontalDemo .navigation .button {
     margin-left: 1em;
 }
 
@@ -76,13 +76,13 @@
     margin-bottom: 1em;
 }
 
-#photoDemo .navi {
+#photoDemo .navigation {
     margin-top: 1em;
     padding-left: 1em;
     padding-right: 1em;
 }
 
-#photoDemo .navi .title img {
+#photoDemo .navigation .title img {
     width: 50px;
 }
 

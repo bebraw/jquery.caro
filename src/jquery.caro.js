@@ -1,23 +1,15 @@
 (function ($) {
-    function horizontalCaro($elem, opts) {
-        caroize($elem, opts, 'left', 'width');
-    }
-
-    function verticalCaro($elem, opts) {
-        caroize($elem, opts, 'top', 'height');
-    }
-
-    function caroize($elem, opts, dir, axis) {
+    function caroize($elem, opts, direction, axis) {
         var $slideContainer = $elem.find('.' + opts.classes.slides).first();
         var $slides = $slideContainer.children().append($('<div>'));
         var $wrapper = $('<div>').append($slides).appendTo($slideContainer);
-        var $navi = $elem.children('.' + opts.classes.navi).last();
+        var $navigation = $elem.children('.' + opts.classes.navigation).last();
         var amount = $slides.length;
         var pos = opts.initialSlide;
 
-        initCSS($slideContainer, axis, $wrapper, dir, $slides);
-        initTitles($slides, $navi, moveTemplate, opts.autoNavi, opts.classes.button);
-        initNavi($elem, $wrapper, moveTemplate, opts.classes);
+        initCSS($slideContainer, axis, $wrapper, direction, $slides);
+        initTitles($slides, $navigation, moveTemplate, opts.autoNavigation, opts.classes.button);
+        initNavigation($elem, $wrapper, moveTemplate, opts.classes);
         initPlayback($elem, $wrapper, moveTemplate, opts.autoPlay, opts.still);
 
         if(opts.resize) {
@@ -31,7 +23,7 @@
         });
 
         if(pos) {
-            $wrapper.css(dir, (pos * -100) + '%');
+            $wrapper.css(direction, (pos * -100) + '%');
             $slideContainer.css('height', $slides.eq(pos).height());
         }
 
@@ -47,7 +39,7 @@
                 else pos = clamp(indexCb(pos, amount - 1), 0, amount - 1);
 
                 var animProps = {};
-                animProps[dir] = (pos * -100) + '%';
+                animProps[direction] = (pos * -100) + '%';
                 $wrapper.animate(animProps, opts.delay, animCb);
 
                 update(pos, opts.classes);
@@ -58,7 +50,7 @@
         }
 
         function update(i, classes) {
-            updateNavi($navi, i, classes.button);
+            updateNavigation($navigation, i, classes.button);
 
             if(!opts.cycle) {
                 updateButtons($elem, i, amount);
@@ -78,7 +70,7 @@
                 $slideContainer.animate({
                     'height': $slides.eq(i).height() || undefined
                 }, opts.resizeDelay, function() {
-                    $elem.parents('.' + classes.slides).siblings('.navi').
+                    $elem.parents('.' + classes.slides).siblings('.' + classes.navigation).
                         find('.selected.' + classes.button).first().trigger('click');
                 });
             }
@@ -89,17 +81,17 @@
         return Math.min(Math.max(i, min), max);
     }
 
-    function initCSS($slideContainer, axis, $wrapper, dir, $slides) {
+    function initCSS($slideContainer, axis, $wrapper, direction, $slides) {
         $slideContainer.css('overflow', 'hidden');
         var wrapperOpts = {
             position:'relative'
         };
         wrapperOpts[axis] = $slides.length * 100 + '%';
-        wrapperOpts[dir] = 0 + '%';
+        wrapperOpts[direction] = 0 + '%';
         $wrapper.css(wrapperOpts);
 
         var slideOpts = {
-            display: dir == 'top'? 'auto': 'inline-block',
+            display: direction == 'top'? 'auto': 'inline-block',
             'vertical-align':'top'
         };
         var len = 100 / $slides.length;
@@ -121,7 +113,7 @@
         });
     }
 
-    function initTitles($slides, $navi, move, autoNavi, buttonClass) {
+    function initTitles($slides, $navigation, move, autoNavigation, buttonClass) {
         $slides.each(function (i, k) {
             var $e = $('<a>', {href: '#'}).css('display', 'inline').bind('click',
                 function(e) {
@@ -130,9 +122,9 @@
                     move(function () {
                         return i;
                     })();
-                }).appendTo($navi).addClass('title ' + buttonClass);
+                }).appendTo($navigation).addClass('title ' + buttonClass);
 
-            if(autoNavi) {
+            if(autoNavigation) {
                 $(k).clone().appendTo($e);
             }
             else {
@@ -141,7 +133,7 @@
         });
     }
 
-    function initNavi($elem, $wrapper, move, classes) {
+    function initNavigation($elem, $wrapper, move, classes) {
         function bind(sel, cb) {
             $('[data-caro="' + sel + '"]').bind('click', fn);
             $elem.find('.' + sel).bind('click', preventDefault(fn));
@@ -166,7 +158,7 @@
             }
         }
 
-        bind(classes.prev, function (a) {
+        bind(classes.previous, function (a) {
             var ret = a - 1;
 
             $elem.trigger('previousSlide', [ret]);
@@ -222,7 +214,7 @@
         });
     }
 
-    function updateNavi($navi, i, buttonClass) {
+    function updateNavigation($navi, i, buttonClass) {
         var $titles = $navi.find('.title.' + buttonClass);
 
         $titles.removeClass('selected');
@@ -230,8 +222,8 @@
     }
 
     function updateButtons($elem, i, amount) {
-        var $begin = $elem.find('.first,.prev');
-        var $end = $elem.find('.last,.next');
+        var $begin = $elem.find('.first, .previous');
+        var $end = $elem.find('.last, .next');
 
         if(i === 0) $begin.addClass('disabled');
         else $begin.removeClass('disabled');
@@ -244,10 +236,10 @@
         $slides.each(function(j, e) {
             var $e = $(e);
 
-            $e.removeClass('prev current next');
+            $e.removeClass('previous current next');
 
             if(j == i - 1) {
-                $e.addClass('prev');
+                $e.addClass('previous');
             }
 
             if(j == i) {
@@ -277,30 +269,34 @@
         return this.each(function () {
             var $elem = $(this);
             var opts = $.extend(true, {
-                dir: 'horizontal', // either 'horizontal' or 'vertical'
+                direction: 'horizontal', // either 'horizontal' or 'vertical'
                 delay: 300, // in ms
                 still: 1000, // how long slide stays still in playback mode
                 autoPlay: false,
                 classes: {
                     slides: 'slides',
                     button: 'button',
-                    navi: 'navi',
-                    prev: 'prev',
+                    navigation: 'navigation',
+                    previous: 'previous',
                     next: 'next',
                     first: 'first',
                     last: 'last',
                     currentAmount: 'currentAmount',
                     totalAmount: 'totalAmount'
                 },
-                autoNavi: false,
+                autoNavigation: false,
                 cycle: false,
                 resize: true,
                 resizeDelay: 300, // in ms
                 initialSlide: 0
             }, options);
 
-            var caro = opts.dir == 'horizontal' ? horizontalCaro : verticalCaro;
-            caro($elem, opts);
+            if(opts.direction === 'horizontal') {
+                caroize($elem, opts, 'left', 'width');
+            }
+            else {
+                caroize($elem, opts, 'top', 'height');
+            }
         });
     };
 })(jQuery);
