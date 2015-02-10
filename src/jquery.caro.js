@@ -22,7 +22,7 @@
             updateHeight(pos, opts.classes);
         });
 
-        if(pos) {
+        if($.isNumeric(pos)) {
             $wrapper.css(direction, (pos * -100) + '%');
             $slideContainer.css('height', $slides.eq(pos).height());
         }
