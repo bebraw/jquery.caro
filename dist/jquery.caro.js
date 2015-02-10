@@ -1,5 +1,5 @@
-/*! jquery.caro - v1.0.0 - Juho Vepsalainen - MIT
-https://github.com/bebraw/jquery.caro - 2014-11-15 */
+/*! jquery.caro - v1.0.1 - Juho Vepsalainen - MIT
+https://github.com/bebraw/jquery.caro - 2015-02-10 */
 (function ($) {
     function caroize($elem, opts, direction, axis) {
         var $slideContainer = $elem.find('.' + opts.classes.slides).first();
@@ -24,7 +24,7 @@ https://github.com/bebraw/jquery.caro - 2014-11-15 */
             updateHeight(pos, opts.classes);
         });
 
-        if(pos) {
+        if($.isNumeric(pos)) {
             $wrapper.css(direction, (pos * -100) + '%');
             $slideContainer.css('height', $slides.eq(pos).height());
         }
