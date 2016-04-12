@@ -1,7 +1,7 @@
 {
   "name": "jquery.caro",
   "version": "1.0.1",
-  "main": "./dist/jquery.caro.min.js",
+  "main": "./dist/jquery.caro.js",
   "dependencies": {
     "jquery": ">= 1.4.4"
   }
