@@ -21,4 +21,6 @@ $(function() {
         cycle: true
     });
     $('.innerDemo').caro();
+
+    $('#autoplayDemo').caro({ autoPlay: true })
 });

@@ -1,5 +1,5 @@
-/*! jquery.caro - v1.0.1 - Juho Vepsalainen - MIT
-https://github.com/bebraw/jquery.caro - 2015-02-10 */
+/*! jquery.caro - v1.0.2 - Juho Vepsalainen - MIT
+https://github.com/bebraw/jquery.caro - 2020-12-09 */
 (function ($) {
     function caroize($elem, opts, direction, axis) {
         var $slideContainer = $elem.find('.' + opts.classes.slides).first();
@@ -214,6 +214,10 @@ https://github.com/bebraw/jquery.caro - 2015-02-10 */
 
             $wrapper.clearQueue();
         });
+
+        if (autoPlay) {
+            anim();
+        }
     }
 
     function updateNavigation($navi, i, buttonClass) {

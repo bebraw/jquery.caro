@@ -212,6 +212,10 @@
 
             $wrapper.clearQueue();
         });
+
+        if (autoPlay) {
+            anim();
+        }
     }
 
     function updateNavigation($navi, i, buttonClass) {
